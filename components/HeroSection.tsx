@@ -1,6 +1,12 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselPrevious,
+  CarouselNext,
+} from "@/components/ui/carousel";
 import adhdImg from "@/assets/landing/hero/adhd.png";
 import anxietyImg from "@/assets/landing/hero/anxiety.png";
 import weightImg from "@/assets/landing/hero/weight-wellness.png";
@@ -58,27 +64,44 @@ export default function HeroSection() {
             </p>
           </div>
 
-          <div className="mt-10 grid grid-cols-2 md:grid-cols-5 gap-6 max-w-6xl mx-auto px-4">
-            {categories.map((c) => (
-              <div
-                key={c.name}
-                className="relative overflow-hidden rounded-2xl bg-[#E2EBEC] p-6 flex flex-col items-center gap-4 text-center hover:shadow-lg transition-all duration-300"
-              >
-                {/* absoulte circle at top left corner */}
-                <div className="absolute -top-20 -left-16 size-52 rounded-full bg-[#0084D41C]"></div>
-                <div className="relative w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-white shadow-sm">
-                  <Image
-                    src={c.src}
-                    alt={c.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <span className="text-lg font-mono font-semibold text-sky-900">
-                  {c.name}
-                </span>
-              </div>
-            ))}
+          <div className="mt-10">
+            <div className="max-w-6xl mx-auto">
+              <Carousel>
+                <CarouselContent className="gap-6 -mx-2">
+                  {categories.map((c) => (
+                    <div
+                      key={c.name}
+                      className="pl-4 shrink-0 w-52 md:w-64 lg:w-72"
+                    >
+                      <div className="relative overflow-hidden rounded-2xl bg-[#E2EBEC] p-6 flex flex-col items-center gap-4 text-center hover:shadow-lg transition-all duration-300">
+                        {/* absolute circle at top left corner */}
+                        <div className="absolute -top-20 -left-16 size-52 rounded-full bg-[#0084D41C]"></div>
+                        <div className="relative w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-white shadow-sm">
+                          <Image
+                            src={c.src}
+                            alt={c.name}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <span className="text-lg font-mono font-semibold text-sky-900">
+                          {c.name}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </CarouselContent>
+
+                <CarouselPrevious
+                  className="left-3 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur rounded-full p-2 shadow hover:shadow-md border"
+                  size="icon-sm"
+                />
+                <CarouselNext
+                  className="right-3 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur rounded-full p-2 shadow hover:shadow-md border"
+                  size="icon-sm"
+                />
+              </Carousel>
+            </div>
           </div>
 
           <div className="mt-10 flex justify-center">
