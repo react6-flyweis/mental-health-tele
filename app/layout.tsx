@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat, Manrope } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/layouts/Header";
 
 const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -22,10 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${montserrat.variable} ${manrope.variable}`}>
-      <body className="antialiased">
-        <Header />
-        <main>{children}</main>
-      </body>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }
