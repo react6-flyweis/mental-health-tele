@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat, Manrope } from "next/font/google";
+import { Montserrat, Manrope, Arimo } from "next/font/google";
 import "./globals.css";
 
 const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-sans" });
@@ -7,6 +7,11 @@ const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-sans" });
 const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-manrope",
+});
+
+const arimo = Arimo({
+  subsets: ["latin"],
+  variable: "--font-arimo",
 });
 
 export const metadata: Metadata = {
@@ -20,7 +25,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${manrope.variable}`}>
+    <html
+      lang="en"
+      className={`${montserrat.variable} ${manrope.variable} ${arimo.variable}`}
+    >
       <body className="antialiased">{children}</body>
     </html>
   );
