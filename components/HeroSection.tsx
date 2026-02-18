@@ -49,10 +49,8 @@ export default function HeroSection() {
             </div>
 
             <h1 className=" text-4xl md:text-5xl font-medium tracking-tight leading-tight">
-              <span className="block text-emerald-700">
-                Care For Your Mind,
-              </span>
-              <span className="block text-emerald-700 font-medium">
+              <span className="block text-primary">Care For Your Mind,</span>
+              <span className="block text-primary font-medium">
                 From{" "}
                 <span className="text-slate-900 font-medium">Anywhere</span>
               </span>
