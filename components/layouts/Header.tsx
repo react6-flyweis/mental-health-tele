@@ -27,8 +27,12 @@ export function Header() {
       label: "Services",
       to: "/services",
       items: [
-        { label: "Therapy", to: "/services/therapy" },
-        { label: "Medication", to: "/services/medication" },
+        { label: "Medication Refill", to: "/services/medication-refill" },
+        {
+          label: "Treatments Management",
+          to: "/services/treatments-management",
+        },
+        { label: "Work Excuse Letter", to: "/services/work-excuse-letter" },
       ],
     },
     { label: "Blog", to: "/blog", items: [{ label: "Latest", to: "/blog" }] },
@@ -76,7 +80,7 @@ export function Header() {
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
-          <Link href="/signin">
+          <Link href="/dashboard">
             <Button className="bg-accent ">
               <Image src={userIcon} alt="User Icon" className="size-4" />
 
