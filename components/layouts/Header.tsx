@@ -19,8 +19,11 @@ export function Header() {
       label: "Conditions",
       to: "/conditions",
       items: [
-        { label: "Overview", to: "/conditions" },
+        { label: "ADHD", to: "/conditions/adhd" },
         { label: "Anxiety", to: "/conditions/anxiety" },
+        { label: "Depression", to: "/conditions/depression" },
+        { label: "Insomnia", to: "/conditions/insomnia" },
+        { label: "OCD", to: "/conditions/ocd" },
       ],
     },
     {
