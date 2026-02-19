@@ -5,9 +5,9 @@ import { Card, CardContent, CardTitle, CardDescription } from "./ui/card";
 import { Container } from "./ui/container";
 import { SectionHeader } from "./ui/section-header";
 
-import stepImg1 from "@/assets/landing/hero/adhd.png";
-import stepImg2 from "@/assets/landing/hero/anxiety.png";
-import stepImg3 from "@/assets/landing/support.png";
+import stepImg1 from "@/assets/landing/getting-started-1.png";
+import stepImg2 from "@/assets/landing/getting-started-2.png";
+import stepImg3 from "@/assets/landing/getting-started-3.png";
 
 export default function GettingStartedSection() {
   const steps = [
