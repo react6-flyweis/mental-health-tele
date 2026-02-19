@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,6 +9,7 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/ui/carousel";
+import AutoScroll from "embla-carousel-auto-scroll";
 import adhdImg from "@/assets/landing/hero/adhd.png";
 import anxietyImg from "@/assets/landing/hero/anxiety.png";
 import weightImg from "@/assets/landing/hero/weight-wellness.png";
@@ -64,7 +67,16 @@ export default function HeroSection() {
 
           <div className="mt-10">
             <div className="max-w-6xl mx-auto">
-              <Carousel>
+              <Carousel
+                opts={{ loop: true }}
+                plugins={[
+                  AutoScroll({
+                    speed: 1,
+                    stopOnInteraction: false,
+                    stopOnMouseEnter: true,
+                  }),
+                ]}
+              >
                 <CarouselContent className="gap-6 -mx-2">
                   {categories.map((c) => (
                     <div
