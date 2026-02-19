@@ -13,55 +13,53 @@ import {
 import { Container } from "./ui/container";
 import { SectionHeader } from "./ui/section-header";
 
-type Expert = {
-  login?: { uuid?: string };
-  name: { first: string; last: string };
-  picture: { large: string };
-};
+import expert1Img from "@/assets/landing/expert-1.png";
+import expert2Img from "@/assets/landing/expert-2.png";
+import expert3Img from "@/assets/landing/expert-3.png";
 
+const features = [
+  {
+    id: 1,
+    title: "Proven, Research-Backed Care Approaches",
+  },
+  {
+    id: 2,
+    title: "Providers Who Track And Support Your Progress",
+  },
+  {
+    id: 3,
+    title: "Customized, Whole-Person Treatment Plans",
+  },
+  {
+    id: 4,
+    title: "Ongoing Patient Support When You Need It",
+  },
+];
+
+const experts = [
+  {
+    id: 1,
+    name: "Dr. Michael Chichak, MD",
+    title: "Primary Care Physician",
+    description: "",
+    image: expert1Img,
+  },
+  {
+    id: 2,
+    name: "Dr. Michael Chichak, MD",
+    title: "Primary Care Physician",
+    description: "",
+    image: expert2Img,
+  },
+  {
+    id: 3,
+    name: "Dr. Emily Rodriguez, MD",
+    title: "Psychiatrist",
+    description: "",
+    image: expert3Img,
+  },
+];
 export default function ExpertsSection() {
-  const [experts, setExperts] = useState<Expert[]>([]);
-
-  useEffect(() => {
-    let mounted = true;
-    async function load() {
-      try {
-        const res = await fetch(
-          "https://randomuser.me/api/?results=6&inc=name,picture,login&noinfo",
-        );
-        const json = await res.json();
-        if (!mounted) return;
-        setExperts(json.results || []);
-      } catch (err) {
-        // silently fail — keep component usable with empty list
-        console.error("Failed to load expert images", err);
-      }
-    }
-    load();
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
-  const features = [
-    {
-      id: 1,
-      title: "Proven, Research-Backed Care Approaches",
-    },
-    {
-      id: 2,
-      title: "Providers Who Track And Support Your Progress",
-    },
-    {
-      id: 3,
-      title: "Customized, Whole-Person Treatment Plans",
-    },
-    {
-      id: 4,
-      title: "Ongoing Patient Support When You Need It",
-    },
-  ];
-
   return (
     <section className="py-16 bg-[#2195800D]">
       <Container>
@@ -117,8 +115,8 @@ export default function ExpertsSection() {
                         <div className="overflow-hidden rounded-xl aspect-square mb-3 ">
                           {ex ? (
                             <Image
-                              src={ex.picture.large}
-                              alt={`${ex.name.first} ${ex.name.last}`}
+                              src={ex.image}
+                              alt={ex.name}
                               width={640}
                               height={640}
                               className="object-cover  rounded-lg"
