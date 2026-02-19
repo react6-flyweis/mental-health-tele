@@ -2,6 +2,8 @@ import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardTitle, CardDescription } from "./ui/card";
+import { Container } from "./ui/container";
+import { SectionHeader } from "./ui/section-header";
 
 import stepImg1 from "@/assets/landing/hero/adhd.png";
 import stepImg2 from "@/assets/landing/hero/anxiety.png";
@@ -34,20 +36,13 @@ export default function GettingStartedSection() {
 
   return (
     <section className="py-16 md:py-20">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="max-w-4xl mx-auto ">
-          <h2 className="flex gap-1 text-3xl md:text-4xl font-semibold leading-tight">
-            <span className="block text-primary">
-              Getting Started Is Simple
-            </span>
-            <span className="block text-slate-900">Just Three Easy Steps</span>
-          </h2>
-          <p className="text-center text-muted-foreground mt-3 max-w-2xl mx-auto">
-            No Clinic Visits. No Complicated Forms. Just Professional Mental
-            Health Care, Designed To Fit Your Routine.
-          </p>
-        </div>
-        <div className="max-w-6xl mx-auto ">
+      <Container>
+        <SectionHeader
+          title="Getting Started Is Simple"
+          subtitle="Just Three Easy Steps"
+          description="No Clinic Visits. No Complicated Forms. Just Professional Mental Health Care, Designed To Fit Your Routine."
+        />
+        <div className="max-w-6xl mx-auto">
           <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
             {steps.map((s) => (
               <div key={s.id} className="border rounded-2xl p-2">
@@ -82,7 +77,7 @@ export default function GettingStartedSection() {
             </Button>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

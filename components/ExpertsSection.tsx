@@ -10,6 +10,8 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "./ui/carousel";
+import { Container } from "./ui/container";
+import { SectionHeader } from "./ui/section-header";
 
 type Expert = {
   login?: { uuid?: string };
@@ -62,18 +64,13 @@ export default function ExpertsSection() {
 
   return (
     <section className="py-16 bg-[#2195800D]">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="flex flex-col items-center max-w-4xl mx-auto text-center">
-          <h2 className="flex gap-1 text-3xl md:text-4xl font-semibold leading-tight">
-            <span className="block text-primary">Meet The Experts</span>
-            <span className="block text-slate-900">Behind Your Care</span>
-          </h2>
-          <p className=" text-muted-foreground mt-2">
-            Our Mental Health Specialists Are Dedicated To Understanding Your
-            Needs And Supporting You With Thoughtful, Professional Care At Every
-            Step.
-          </p>
-        </div>
+      <Container>
+        <SectionHeader
+          align="center"
+          title="Meet The Experts"
+          subtitle="Behind Your Care"
+          description="Our Mental Health Specialists Are Dedicated To Understanding Your Needs And Supporting You With Thoughtful, Professional Care At Every Step."
+        />
 
         <div className="max-w-6xl mx-auto mt-10 grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
           {/* left features + CTA */}
@@ -156,7 +153,7 @@ export default function ExpertsSection() {
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

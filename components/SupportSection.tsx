@@ -3,16 +3,11 @@ import { ChevronRight } from "lucide-react";
 import supportImg from "@/assets/landing/support.png";
 import mapImg from "@/assets/landing/map.png";
 import { Button } from "./ui/button";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "./ui/accordion";
 
 import targetIcon from "@/assets/icons/target.svg";
 import badgeIcon from "@/assets/icons/badge.svg";
 import speakerIcon from "@/assets/icons/speaker.svg";
+import { Container } from "./ui/container";
 
 export default function SupportSection() {
   const features = [
@@ -42,7 +37,7 @@ export default function SupportSection() {
   return (
     <section className="py-16 md:py-20 space-y-12">
       <div>
-        <div className="container mx-auto px-4 md:px-6">
+        <Container>
           <div className="max-w-6xl mx-auto grid gap-8 md:grid-cols-2 items-center">
             <div>
               <h2 className="text-2xl md:text-3xl font-semibold leading-relaxed">
@@ -94,11 +89,11 @@ export default function SupportSection() {
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </div>
 
       <div>
-        <div className="container mx-auto px-4 md:px-6">
+        <Container>
           <div className="max-w-6xl mx-auto grid gap-8 md:grid-cols-2 items-center">
             <div className="flex justify-center md:justify-start">
               <div className="relative w-full max-w-lg">
@@ -148,107 +143,7 @@ export default function SupportSection() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div>
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl font-semibold text-primary">FAQs</h2>
-            <p className="text-sm text-muted-foreground mt-2">
-              Answers to common questions about our platform and services.
-            </p>
-
-            <div className="mt-8">
-              <Accordion type="single" defaultValue="item-1" collapsible>
-                <AccordionItem value="item-1">
-                  <AccordionTrigger>
-                    What Is This Platform About?
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    This platform connects you with qualified mental health
-                    professionals for remote assessment, therapy, and treatment
-                    planning tailored to your needs.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-2">
-                  <AccordionTrigger>
-                    How Does The Service Work?
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    Create an account, complete a brief intake, then book a
-                    session with a provider. Sessions are conducted securely via
-                    video or chat depending on the provider.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-3">
-                  <AccordionTrigger>
-                    Where Is The Service Available?
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    Availability varies by provider and state; check the
-                    provider directory or our availability map for details.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-4">
-                  <AccordionTrigger>
-                    What Happens During The First And Follow-Up Sessions?
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    The first session focuses on assessment and goals.
-                    Follow-ups involve treatment progress, adjustments, and any
-                    therapeutic interventions agreed upon with your provider.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-5">
-                  <AccordionTrigger>
-                    What Are The Pricing Options?
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    We offer several pricing plans including pay-per-session and
-                    subscription options. See our pricing page for current rates
-                    and details.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-6">
-                  <AccordionTrigger>
-                    Who Provides The Care On This Platform?
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    Licensed mental health professionals including therapists,
-                    psychiatrists, and certified specialists provide care on our
-                    platform.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-7">
-                  <AccordionTrigger>
-                    Can Providers Prescribe Medication If Needed?
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    Some licensed prescribers can prescribe medication where
-                    permitted by law. Medication management availability depends
-                    on the provider and local regulations.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-8">
-                  <AccordionTrigger>Is Insurance Accepted?</AccordionTrigger>
-                  <AccordionContent>
-                    Insurance acceptance varies by provider. Check individual
-                    provider profiles or contact support for insurance
-                    verification assistance.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </div>
-          </div>
-        </div>
+        </Container>
       </div>
     </section>
   );
