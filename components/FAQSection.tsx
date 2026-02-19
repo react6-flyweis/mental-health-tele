@@ -5,6 +5,8 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
+import { Container } from "./ui/container";
+import { SectionHeader } from "./ui/section-header";
 
 const faqs = [
   {
@@ -69,34 +71,31 @@ const faqs = [
 export default function FAQSection() {
   return (
     <section className="py-20">
-      <div className="container mx-auto px-4">
-        <h2 className="text-center text-2xl font-semibold text-teal-700 mb-6">
-          FAQs
-        </h2>
-        <div className="max-w-3xl mx-auto">
-          <Accordion
-            type="single"
-            className="space-y-4"
-            collapsible
-            defaultValue="faq-1"
-          >
-            {faqs.map((item, i) => (
-              <AccordionItem
-                key={i}
-                value={`faq-${i + 1}`}
-                className={cn(" shadow-lg rounded-md border p-3", {
-                  "border-2 border-primary": i === 0,
-                })}
-              >
-                <AccordionTrigger>{item.q}</AccordionTrigger>
-                <AccordionContent>
-                  <div className="text-sm text-muted-foreground">{item.a}</div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </div>
+      <Container>
+        <SectionHeader title="FAQs" className="mb-6" />
+
+        <Accordion
+          type="single"
+          className="space-y-4"
+          collapsible
+          defaultValue="faq-1"
+        >
+          {faqs.map((item, i) => (
+            <AccordionItem
+              key={i}
+              value={`faq-${i + 1}`}
+              className={cn(" shadow-lg rounded-md border", {
+                "border-2 border-primary": i === 0,
+              })}
+            >
+              <AccordionTrigger className="p-3">{item.q}</AccordionTrigger>
+              <AccordionContent>
+                <div className="text-sm text-muted-foreground">{item.a}</div>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </Container>
     </section>
   );
 }
