@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import bgPattern from "@/assets/landing/hero/bg-pattern.png";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function WorkExcuseHero() {
   return (
@@ -44,10 +45,12 @@ export default function WorkExcuseHero() {
           </div>
 
           <div className="mt-8 flex justify-center">
-            <Button className="bg-gradient-primary" size="lg">
-              Schedule An Online Visit
-              <ArrowRight className="w-5 h-5" />
-            </Button>
+            <Link href="/onboarding">
+              <Button className="bg-gradient-primary" size="lg">
+                Schedule An Online Visit
+                <ArrowRight className="w-5 h-5" />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

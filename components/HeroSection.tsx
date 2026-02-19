@@ -17,6 +17,7 @@ import depressionImg from "@/assets/landing/hero/depression.png";
 import sleepImg from "@/assets/landing/hero/sleep-issues.png";
 
 import bgPattern from "@/assets/landing/hero/bg-pattern.png";
+import Link from "next/link";
 
 export default function HeroSection() {
   const categories = [
@@ -115,10 +116,12 @@ export default function HeroSection() {
           </div>
 
           <div className="mt-10 flex justify-center">
-            <Button className="bg-gradient-primary" size="lg">
-              Book Your Session
-              <ArrowRight className="w-5 h-5" />
-            </Button>
+            <Link href="/onboarding">
+              <Button className="bg-gradient-primary" size="lg">
+                Book Your Session
+                <ArrowRight className="w-5 h-5" />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

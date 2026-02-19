@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import bgPattern from "@/assets/landing/hero/bg-pattern.png";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function RefillHero() {
   return (
@@ -38,10 +39,12 @@ export default function RefillHero() {
           </div>
 
           <div className="mt-10 flex justify-center">
-            <Button className="bg-gradient-primary" size="lg">
-              Schedule an online visit
-              <ArrowRight className="w-5 h-5" />
-            </Button>
+            <Link href="/onboarding">
+              <Button className="bg-gradient-primary" size="lg">
+                Schedule an online visit
+                <ArrowRight className="w-5 h-5" />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
