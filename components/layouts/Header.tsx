@@ -1,5 +1,9 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -50,6 +54,7 @@ export function Header() {
     { label: "FAQs", to: "/faqs", items: [{ label: "General", to: "/faqs" }] },
   ];
 
+  const pathname = usePathname();
   return (
     <header>
       <div className="container mx-auto flex items-center gap-6 px-4 py-4">
@@ -62,24 +67,42 @@ export function Header() {
         </Link>
 
         <nav className="hidden md:flex flex-1 items-center justify-center gap-4">
-          {navItems.map((nav) => (
-            <DropdownMenu key={nav.label}>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="px-3">
-                  <span className="mr-2">{nav.label}</span>
-                  <ChevronDown />
-                </Button>
-              </DropdownMenuTrigger>
+          {navItems.map((nav) => {
+            const navActive = pathname?.startsWith(nav.to);
 
-              <DropdownMenuContent align="start" className="w-48">
-                {nav.items.map((item) => (
-                  <DropdownMenuItem key={item.to}>
-                    <Link href={item.to}>{item.label}</Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          ))}
+            return (
+              <DropdownMenu key={nav.label}>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className={cn("px-3", navActive && "")}
+                  >
+                    <span className="mr-2">{nav.label}</span>
+                    <ChevronDown />
+                  </Button>
+                </DropdownMenuTrigger>
+
+                <DropdownMenuContent align="start" className="w-48">
+                  {nav.items.map((item) => {
+                    const itemActive = pathname?.startsWith(item.to);
+
+                    return (
+                      <Link
+                      key={item.to}
+                        className={cn(itemActive && "text-primary")}
+                        href={item.to}
+                      >
+                        <DropdownMenuItem >
+                          {item.label}
+                        </DropdownMenuItem>
+                      </Link>
+                    );
+                  })}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            );
+          })}
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
