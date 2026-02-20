@@ -3,7 +3,7 @@ import {
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-} from "@/components/ui/accordion";
+} from "@/components/ui/styled-accordion";
 import { cn } from "@/lib/utils";
 import { Container } from "./ui/container";
 import { SectionHeader } from "./ui/section-header";
@@ -86,10 +86,11 @@ export default function FAQSection() {
               value={`faq-${i + 1}`}
               className={cn(" shadow-lg rounded-md border", {
                 "border-2 border-primary": i === 0,
+                "bg-white": i !== 0,
               })}
             >
               <AccordionTrigger className="p-3">{item.q}</AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className="p-3 pt-0">
                 <div className="text-sm text-muted-foreground">{item.a}</div>
               </AccordionContent>
             </AccordionItem>
