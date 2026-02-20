@@ -1,6 +1,34 @@
 import { cn } from "@/lib/utils";
+import { cva } from "class-variance-authority";
 
 type Align = "left" | "center";
+
+const sectionHeaderVariants = cva("", {
+  variants: {
+    align: {
+      center: "text-center",
+      left: "text-left",
+    },
+  },
+  defaultVariants: {
+    align: "center",
+  },
+});
+
+const headingVariants = cva(
+  "flex flex-wrap gap-2 text-3xl md:text-4xl font-semibold leading-tight",
+  {
+    variants: {
+      align: {
+        center: "justify-center",
+        left: "justify-start",
+      },
+    },
+    defaultVariants: {
+      align: "center",
+    },
+  },
+);
 
 interface SectionHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Primary-colored portion of the heading */
@@ -26,16 +54,8 @@ export function SectionHeader({
   ...props
 }: SectionHeaderProps) {
   return (
-    <div
-      className={cn(align === "center" && "text-center", className)}
-      {...props}
-    >
-      <Heading
-        className={cn(
-          "flex flex-wrap gap-2 text-3xl md:text-4xl font-semibold leading-tight",
-          align === "center" && "justify-center",
-        )}
-      >
+    <div className={cn(sectionHeaderVariants({ align }), className)} {...props}>
+      <Heading className={cn(headingVariants({ align }))}>
         <span className="text-primary">{title}</span>
         {subtitle && <span className="text-slate-900">{subtitle}</span>}
       </Heading>
