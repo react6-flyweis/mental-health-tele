@@ -1,17 +1,18 @@
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-  CardDescription,
   CardFooter,
 } from "@/components/ui/card";
-import { Arrow } from "radix-ui/internal";
 import { Container } from "@/components/ui/container";
 import { SectionHeader } from "@/components/ui/section-header";
+
+import checkIcon from "@/assets/icons/check.svg";
+import Image from "next/image";
 
 const plans = [
   {
@@ -25,7 +26,7 @@ const plans = [
       "Personalized Care Recommendations",
       "Medication Guidance When Appropriate",
     ],
-    href: "/appointment?type=initial",
+    href: "/onboarding?type=initial",
     cta: "Schedule First Visit",
   },
   {
@@ -39,7 +40,7 @@ const plans = [
       "Adjustments To Care Plans When Needed",
       "Continued Treatments Support",
     ],
-    href: "/appointment?type=follow-up",
+    href: "/onboarding?type=follow-up",
     cta: "Schedule Follow-Up",
   },
 ];
@@ -83,7 +84,11 @@ export default function TreatmentsPricing({
                   {p.bullets.map((b) => (
                     <li key={b} className="flex items-start gap-3">
                       <div className="size-6 rounded-full bg-gradient-primary/10 text-primary flex items-center justify-center mt-1">
-                        <Check className="w-3.5 h-3.5" />
+                        <Image
+                          src={checkIcon}
+                          alt="Check Icon"
+                          className="size-3.5"
+                        />
                       </div>
                       <p className="text-sm text-muted-foreground leading-relaxed">
                         {b}
