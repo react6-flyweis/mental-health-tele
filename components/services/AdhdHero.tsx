@@ -1,9 +1,10 @@
 import Image from "next/image";
-import { ArrowRight, CheckCircle } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import adhdImg from "@/assets/landing/hero/adhd.png";
 import bgPattern from "@/assets/landing/hero/bg-pattern.png";
 import { Button } from "@/components/ui/button";
 import { Container } from "../ui/container";
+import Link from "next/link";
 
 export default function AdhdHero() {
   const features = [
@@ -48,10 +49,11 @@ export default function AdhdHero() {
               </p>
 
               <div className="mt-6 flex flex-wrap items-center gap-3">
-                <Button className="bg-gradient-primary" size="lg">
-                  Start your assessment
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
+                <Link href="/onboarding">
+                  <Button className="bg-gradient-primary" size="lg">
+                    Start your assessment
+                  </Button>
+                </Link>
 
                 <Button variant="outline" size="lg">
                   How it works
