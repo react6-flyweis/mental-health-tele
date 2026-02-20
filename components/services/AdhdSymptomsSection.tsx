@@ -33,25 +33,24 @@ const symptoms = [
 
 export default function AdhdSymptomsSection() {
   return (
-    <section className="py-16">
+    <section className="py-16 bg-[#F9FAFB]">
       <Container>
         <SectionHeader
-          title="Common ADHD symptoms in adults"
+          title=""
+          subtitle="Common ADHD symptoms in adults"
           description="These signs are common, and you're not alone. If they sound familiar, we can help."
           className="mb-6"
         />
 
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-2xl mx-auto">
           <Accordion type="single" className="space-y-4" collapsible>
             {symptoms.map((s, i) => (
               <AccordionItem
                 key={s.title}
                 value={`symptom-${i + 1}`}
-                className={cn(" shadow-lg rounded-md border", {
-                  "border-2 border-primary": i === 0,
-                })}
+                className="shadow-md bg-white border p-3 px-4 rounded-xl"
               >
-                <AccordionTrigger className="p-4">{s.title}</AccordionTrigger>
+                <AccordionTrigger>{s.title}</AccordionTrigger>
                 <AccordionContent>
                   <div className="text-sm text-muted-foreground">{s.body}</div>
                 </AccordionContent>
