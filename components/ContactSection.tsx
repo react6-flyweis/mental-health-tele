@@ -20,7 +20,7 @@ import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 
 const contactSchema = z.object({
-  email: z.string().email("Please enter a valid email"),
+  email: z.email("Please enter a valid email"),
   message: z.string().min(1, "Message cannot be empty"),
 });
 
