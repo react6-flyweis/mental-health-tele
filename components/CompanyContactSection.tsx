@@ -13,7 +13,7 @@ import { Checkbox } from "./ui/checkbox";
 
 const contactSchema = z.object({
   fullName: z.string().min(1, "Full name is required"),
-  email: z.email("Please enter a valid email"),
+  email: z.string().email("Please enter a valid email"),
   subject: z.string().optional(),
   message: z.string().min(1, "Message cannot be empty"),
   agree: z.boolean().refine((v) => v, {
