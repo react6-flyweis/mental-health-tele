@@ -45,10 +45,13 @@ export function Header() {
     { label: "Blog", to: "/blog", items: [{ label: "Latest", to: "/blog" }] },
     {
       label: "Company",
-      to: "/company",
+      to: "/about",
       items: [
-        { label: "About", to: "/about" },
-        { label: "Careers", to: "/company/careers" },
+        { label: "About Us", to: "/about" },
+        { label: "Careers", to: "/careers" },
+        { label: "Contact Us", to: "/contact" },
+        { label: "Providers", to: "/providers" },
+        { label: "Reviews", to: "/reviews" },
       ],
     },
     { label: "FAQs", to: "/faqs", items: [{ label: "General", to: "/faqs" }] },
@@ -89,13 +92,11 @@ export function Header() {
 
                     return (
                       <Link
-                      key={item.to}
+                        key={item.to}
                         className={cn(itemActive && "text-primary")}
                         href={item.to}
                       >
-                        <DropdownMenuItem >
-                          {item.label}
-                        </DropdownMenuItem>
+                        <DropdownMenuItem>{item.label}</DropdownMenuItem>
                       </Link>
                     );
                   })}
