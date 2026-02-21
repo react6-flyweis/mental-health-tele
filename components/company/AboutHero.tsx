@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/container";
 import Link from "next/link";
 
 import aboutHeroImg from "@/assets/company/about.png";
+import bgPattern from "@/assets/landing/hero/bg-pattern.png";
 
 export default function AboutHero() {
   const features = [
@@ -28,13 +29,20 @@ export default function AboutHero() {
   return (
     <section className="py-10">
       <Container className="relative">
-        {/* background patterns for decoration (reuse landing pattern)
-            if you want to make unique you can add new assets */}
-        <div className="absolute top-20 -scale-x-100 z-0 opacity-50 max-w-xs">
-          {/* optional decorative element */}
+        {/* Decorative background elements could go here if we had SVGs */}
+        <div className="absolute top-5 -scale-x-100 z-0 opacity-50 max-w-xs">
+          <Image
+            src={bgPattern}
+            alt="Background pattern"
+            className="w-full h-full object-cover"
+          />
         </div>
-        <div className="absolute z-0 top-20 right-0 opacity-50 max-w-xs">
-          {/* optional decorative element */}
+        <div className="absolute z-0 top-5 right-0 opacity-50 max-w-xs">
+          <Image
+            src={bgPattern}
+            alt="Background pattern"
+            className="w-full h-full object-cover"
+          />
         </div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
