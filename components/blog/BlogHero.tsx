@@ -5,6 +5,8 @@ import bgPattern from "@/assets/landing/hero/bg-pattern.png";
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
+import { SectionHeader } from "@/components/ui/section-header";
+import { cn } from "@/lib/utils";
 
 const tags = [
   "ADHD",
@@ -41,17 +43,13 @@ export default function BlogHero() {
           />
         </div>
 
-        <div className="text-center max-w-3xl mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight">
-            Insights For A{" "}
-            <span className="text-slate-900">Healthier Mind</span>
-          </h1>
-
-          <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-            Explore expert-written articles on mental wellness, treatments, and
-            everyday strategies to support your emotional well-being.
-          </p>
-        </div>
+        <SectionHeader
+          title="Insights For A"
+          subtitle="Healthier Mind"
+          description="Explore expert-written articles on mental wellness, treatments, and everyday strategies to support your emotional well-being."
+          as="h1"
+          className="max-w-3xl mx-auto px-4"
+        />
 
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           {tags.map((tag) => {
@@ -61,12 +59,12 @@ export default function BlogHero() {
               <Link
                 key={tag}
                 href={`/blog?tag=${encodeURIComponent(tag)}`}
-                className={
-                  `px-4 z-10 py-2 rounded-full shadow-md font-semibold transition-colors ` +
-                  (isActive
-                    ? "bg-primary text-white"
-                    : "bg-white text-primary hover:bg-primary hover:text-white")
-                }
+                className={cn(
+                  "px-3 z-10 py-1.5 rounded-full font-semibold transition-colors",
+                  isActive
+                    ? "bg-primary text-white shadow-[0px_4px_6px_-4px_#96F7E480,0px_10px_15px_-3px_#96F7E480]"
+                    : "bg-white text-primary shadow-md hover:bg-primary hover:text-white",
+                )}
               >
                 {tag}
               </Link>
