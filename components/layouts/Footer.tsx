@@ -53,12 +53,12 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4">Industries</h4>
             <ul className="space-y-4 text-slate-200 text-sm">
               <li>
-                <Link href="#" className="hover:underline">
+                <Link href="/dea" className="hover:underline">
                   DEA Rules Update
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:underline">
+                <Link href="/editorial-policy" className="hover:underline">
                   Editorial Policy
                 </Link>
               </li>
