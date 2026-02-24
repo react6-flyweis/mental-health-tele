@@ -70,17 +70,17 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4">More info</h4>
             <ul className="space-y-4 text-slate-200 text-sm">
               <li>
-                <Link href="#" className="hover:underline">
+                <Link href="/privacy-policy" className="hover:underline">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:underline">
+                <Link href="/terms-of-use" className="hover:underline">
                   Terms Of Use
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:underline">
+                <Link href="/payment-terms" className="hover:underline">
                   Payment terms
                 </Link>
               </li>
