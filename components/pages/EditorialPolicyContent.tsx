@@ -218,7 +218,7 @@ export default function EditorialPolicyContent() {
                   className={cn(
                     "block text-sm  rounded-xl hover:text-primary px-4 py-2.5 transition-colors",
                     activeId === s.id
-                      ? "bg-primary/10 text-primary border-l-3 border-primary rounded-r-md font-medium"
+                      ? "bg-primary/10 text-primary border-l-3 border-primary font-medium"
                       : "text-muted-foreground border-l-2 border-transparent",
                   )}
                 >
@@ -234,7 +234,7 @@ export default function EditorialPolicyContent() {
           <section key={s.id} id={s.id} className="scroll-mt-24">
             <Card className="p-6 md:p-8 gap-0 shadow-md">
               <div className="flex items-center space-x-4 mb-4">
-                <div className="flex-shrink-0 size-11 rounded-xl bg-gradient-primary flex items-center justify-center shadow-sm">
+                <div className="shrink-0 size-11 rounded-xl bg-gradient-primary flex items-center justify-center shadow-sm">
                   <s.Icon className="size-5 text-white" />
                 </div>
                 <h2 className="text-xl font-semibold text-foreground">
