@@ -1,5 +1,6 @@
 import { Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Container } from "@/components/ui/container";
 
 import Image from "next/image";
 
@@ -18,7 +19,7 @@ export default function PrescribingLimits() {
   ];
   return (
     <section className="py-16 bg-white">
-      <div className="container mx-auto ">
+      <Container>
         <div className="grid items-center md:grid-cols-2">
           <div className="relative">
             <div className="max-w-md mx-auto relative">
@@ -68,7 +69,7 @@ export default function PrescribingLimits() {
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

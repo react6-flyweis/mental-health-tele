@@ -1,6 +1,8 @@
 import { Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SectionHeader } from "@/components/ui/section-header";
 import Image from "next/image";
+import { Container } from "@/components/ui/container";
 
 import treatmentRenewalImage from "@/assets/services/treatment-renewal.png";
 import arrowIcon from "@/assets/icons/arrow-curve.svg";
@@ -38,7 +40,7 @@ export default function TreatmentRenewal() {
   return (
     <>
       <section className="py-16">
-        <div className="container mx-auto ">
+        <Container>
           <div className="grid items-center md:grid-cols-2">
             <div className="relative">
               <div className="md:max-w-sm mx-auto relative">
@@ -88,15 +90,15 @@ export default function TreatmentRenewal() {
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
       <section className="py-16">
-        <div className="container mx-auto px-4 md:px-6">
+        <Container>
           <div className="max-w-3xl mx-auto text-center mb-10">
-            <h2 className="flex items-center gap-2 text-3xl md:text-4xl font-semibold leading-tight">
-              <span className="block text-primary">Getting Treatments</span>
-              <span className="block text-slate-900">Online Is Simple</span>
-            </h2>
+            <SectionHeader
+              title="Getting Treatments"
+              subtitle="Online Is Simple"
+            />
           </div>
 
           <div className="relative">
@@ -130,7 +132,7 @@ export default function TreatmentRenewal() {
               ))}
             </div>
           </div>
-        </div>
+        </Container>
       </section>
     </>
   );

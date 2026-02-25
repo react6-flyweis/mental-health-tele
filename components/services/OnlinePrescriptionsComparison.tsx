@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Check, X, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionHeader } from "@/components/ui/section-header";
+import { Container } from "@/components/ui/container";
 
 const rows = [
   {
@@ -44,7 +45,7 @@ const rows = [
 export default function OnlinePrescriptionsComparison() {
   return (
     <section className="py-16 bg-[#F9FAFB]">
-      <div className="container mx-auto px-4 md:px-6">
+      <Container>
         <div className="max-w-5xl mx-auto bg-gray-50 border border-gray-100 rounded-xl shadow-sm p-2">
           <div className="max-w-5xl mx-auto bg-white border border-gray-100 rounded-xl shadow-sm p-6 md:p-8">
             <SectionHeader
@@ -54,7 +55,7 @@ export default function OnlinePrescriptionsComparison() {
               align="center"
             />
 
-            <div className="overflow-hidden rounded-md border border-gray-200">
+            <div className="overflow-x-auto overflow-hidden rounded-md border border-gray-200">
               <table className="w-full table-fixed text-sm">
                 <thead className="bg-[#F4F9F8] border-gray-200 border-b">
                   <tr className="divide-x">
@@ -133,7 +134,7 @@ export default function OnlinePrescriptionsComparison() {
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

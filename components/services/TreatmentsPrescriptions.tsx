@@ -2,6 +2,7 @@ import { Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import handlePrescriptionImage from "@/assets/services/handle-prescription.png";
 import Image from "next/image";
+import { Container } from "@/components/ui/container";
 
 export default function TreatmentsPrescriptions() {
   const features = [
@@ -16,7 +17,7 @@ export default function TreatmentsPrescriptions() {
   ];
   return (
     <section className="py-16 bg-[#f3faf8]">
-      <div className="container mx-auto ">
+      <Container>
         <div className="grid items-center md:grid-cols-2">
           <div className="relative">
             <div className="max-w-md mx-auto relative">
@@ -68,7 +69,7 @@ export default function TreatmentsPrescriptions() {
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

@@ -12,6 +12,7 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
+import { Container } from "@/components/ui/container";
 
 export default function MedicationsSupported() {
   const items = [
@@ -130,7 +131,7 @@ export default function MedicationsSupported() {
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
