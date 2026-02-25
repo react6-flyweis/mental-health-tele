@@ -12,6 +12,8 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
+import { SectionHeader } from "@/components/ui/section-header";
+
 import { Container } from "@/components/ui/container";
 
 export default function MedicationsSupported() {
@@ -62,22 +64,14 @@ export default function MedicationsSupported() {
 
   return (
     <section className="py-16 md:py-20">
-      <div className="container mx-auto px-4 md:px-6">
+      <Container>
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col text-center items-center mb-8">
-            <h2 className="flex gap-2 text-center mx-auto text-3xl md:text-4xl font-semibold mb-3">
-              <span className="block text-primary">Medications Supported</span>
-              <span className="block text-slate-900 font-medium">
-                Through Our Platform
-              </span>
-            </h2>
-
-            <p>
-              Our licensed healthcare professionals are authorized to evaluate
-              symptoms and, when appropriate, prescribe or continue medications
-              for various mental health and wellness conditions including
-              certain regulated medications, based on clinical guidelines.
-            </p>
+            <SectionHeader
+              title="Medications Supported"
+              subtitle="Through Our Platform"
+              description="Our licensed healthcare professionals are authorized to evaluate symptoms and, when appropriate, prescribe or continue medications for various mental health and wellness conditions including certain regulated medications, based on clinical guidelines."
+            />
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 items-start">
