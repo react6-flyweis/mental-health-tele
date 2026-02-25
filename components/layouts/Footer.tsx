@@ -6,9 +6,9 @@ export default function Footer() {
   return (
     <footer className="bg-[#346079] text-slate-100">
       <div className="container mx-auto px-4 md:px-6 pt-16 pb-10">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-10">
           {/* Left: logo + links */}
-          <div>
+          <div className="md:col-span-2">
             <div className="flex items-center">
               <Image
                 src={logo}
@@ -45,8 +45,6 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-
-          <div className=""></div>
 
           {/* Column 2 */}
           <div>
@@ -85,12 +83,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:underline">
+                <Link href="/terms-of-use" className="hover:underline">
                   Terms and Conditions
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:underline">
+                <Link href="/ai-consent" className="hover:underline">
                   AI Usage Consent
                 </Link>
               </li>
@@ -102,22 +100,22 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4">Resources</h4>
             <ul className="space-y-4 text-slate-200 text-sm">
               <li>
-                <Link href="#" className="hover:underline">
+                <Link href="/refund-policy" className="hover:underline">
                   Refund Policy
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:underline">
+                <Link href="/hipaa-notice" className="hover:underline">
                   HIPAA Notice
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:underline">
+                <Link href="/hipaa-privacy-policy" className="hover:underline">
                   HIPAA Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:underline">
+                <Link href="/sitemap" className="hover:underline">
                   Sitemap
                 </Link>
               </li>
@@ -126,7 +124,7 @@ export default function Footer() {
         </div>
 
         <div className="max-w-7xl mx-auto mt-8 pt-10 border-t border-white/20">
-          <p className="text-center text-sm text-slate-100/85 leading-relaxed max-w-5xl mx-auto">
+          <p className="text-center text-xs sm:text-sm text-slate-100/85 leading-relaxed max-w-5xl mx-auto">
             The content presented on mental health tele is intended solely for
             informational and educational purposes. It is not a substitute for
             professional medical advice, diagnosis, or treatment. Always seek
