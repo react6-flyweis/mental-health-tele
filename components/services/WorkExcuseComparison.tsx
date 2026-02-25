@@ -1,3 +1,4 @@
+import { SectionHeader } from "@/components/ui/section-header";
 export default function WorkExcuseComparison() {
   const rows = [
     {
@@ -25,14 +26,11 @@ export default function WorkExcuseComparison() {
         <div className="max-w-5xl mx-auto bg-gray-50 border border-gray-100 rounded-xl shadow-sm p-2">
           <div className="max-w-5xl mx-auto bg-white border border-gray-100 rounded-xl shadow-sm p-6 md:p-8">
             <div className="text-center mb-6">
-              <h3 className="text-2xl md:text-3xl font-semibold tracking-tight leading-tight">
-                <span className="block">
-                  <span className="text-primary">Work Excuse Letter</span>{" "}
-                  <span className="text-slate-700 font-semibold">
-                    Vs Self-Written Note
-                  </span>
-                </span>
-              </h3>
+              <SectionHeader
+                title="Work Excuse Letter"
+                subtitle="Vs Self-Written Note"
+                align="center"
+              />
             </div>
 
             <div className="overflow-hidden rounded-md border border-gray-200">

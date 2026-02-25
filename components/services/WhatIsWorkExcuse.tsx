@@ -1,6 +1,7 @@
 import { Check, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { SectionHeader } from "@/components/ui/section-header";
 
 import workExcuseImage from "@/assets/services/work-excuse-letter.png";
 
@@ -38,10 +39,7 @@ export default function WhatIsWorkExcuse() {
           </div>
 
           <div>
-            <h2 className="text-3xl md:text-4xl font-semibold leading-tight">
-              <span className="block text-primary">What Is A Work Excuse</span>
-              <span className="block text-slate-900">Letter?</span>
-            </h2>
+            <SectionHeader title="What Is A Work Excuse" subtitle="Letter?" />
 
             <div className="mt-6 space-y-4">
               {points.map((p) => (

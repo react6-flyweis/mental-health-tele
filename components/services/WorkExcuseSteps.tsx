@@ -1,6 +1,7 @@
 import Image from "next/image";
 import arrowIcon from "@/assets/icons/arrow-curve.svg";
 import { Container } from "@/components/ui/container";
+import { SectionHeader } from "@/components/ui/section-header";
 
 import bulbIcon from "@/assets/icons/bulb.svg";
 
@@ -26,10 +27,11 @@ export default function WorkExcuseSteps() {
   return (
     <section className="py-16">
       <Container>
-        <h2 className="mb-10 max-w-2xl text-center mx-auto gap-2 text-3xl md:text-4xl font-semibold leading-tight">
-          <span className="text-primary ">3 Simple Steps To Get A</span> Work
-          Excuse Letter Online
-        </h2>
+        <SectionHeader
+          title="3 Simple Steps To Get A"
+          subtitle="Work Excuse Letter Online"
+          className="mb-10"
+        />
 
         <div className="relative">
           <div className="grid gap-8 md:grid-cols-3 items-start">

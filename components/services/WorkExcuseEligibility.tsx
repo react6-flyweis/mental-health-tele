@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Check, X, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SectionHeader } from "@/components/ui/section-header";
 
 const rows = [
   {
@@ -47,16 +48,12 @@ export default function WorkExcuseEligibility() {
         <div className="max-w-5xl mx-auto bg-gray-50 border border-gray-100 rounded-xl shadow-sm p-2">
           <div className="max-w-5xl mx-auto bg-white border border-gray-100 rounded-xl shadow-sm p-6 md:p-8">
             <div className="text-center mb-6">
-              <h2 className="text-2xl md:text-3xl font-semibold tracking-tight leading-tight">
-                <span className=" text-primary">Who Qualifies For A </span> Work
-                Excuse Letter?
-              </h2>
-              <p className="mt-3 text-sm text-muted-foreground max-w-2xl mx-auto">
-                Below are common medical and mental health conditions that may
-                qualify for a certified work excuse letter.
-              </p>
+              <SectionHeader
+                title="Who Qualifies For A"
+                subtitle="Work Excuse Letter?"
+                description="Below are common medical and mental health conditions that may qualify for a certified work excuse letter."
+              />
             </div>
-
             <div className="overflow-hidden rounded-md border border-gray-200">
               <table className="w-full table-fixed text-sm">
                 <thead className="bg-[#F4F9F8] border-gray-200 border-b">

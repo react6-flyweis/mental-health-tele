@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { Container } from "@/components/ui/container";
+import { SectionHeader } from "@/components/ui/section-header";
 
 import properWorkExcuseImg from "@/assets/services/proper-work-excuse.png";
 
@@ -33,10 +34,10 @@ export default function WorkExcuseIncludes() {
       <Container>
         <div className="grid items-center gap-8 md:grid-cols-2">
           <div>
-            <h3 className="text-3xl md:text-4xl font-semibold leading-tight">
-              <span className=" text-primary">What a Proper Work</span>{" "}
-              <span className="">Excuse Letter Includes</span>
-            </h3>
+            <SectionHeader
+              title="What a Proper Work"
+              subtitle="Excuse Letter Includes"
+            />
 
             <div className="mt-8 space-y-3">
               {items.map((it) => (

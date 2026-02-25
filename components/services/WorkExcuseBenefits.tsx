@@ -1,5 +1,6 @@
 import { Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SectionHeader } from "@/components/ui/section-header";
 
 export default function WorkExcuseBenefits() {
   const benefits = [
@@ -29,13 +30,10 @@ export default function WorkExcuseBenefits() {
     <section className="py-12 bg-[#F4F9F8]">
       <div className="container mx-auto">
         <div className="max-w-5xl mx-auto text-center">
-          <h3 className="text-2xl md:text-3xl font-semibold tracking-tight leading-tight">
-            <span className="block">
-              <span className="text-primary">Key Benefits Of A Work</span>{" "}
-              Excuse Letter
-            </span>
-          </h3>
-
+          <SectionHeader
+            title="Key Benefits Of A Work"
+            subtitle="Excuse Letter"
+          />
           <div className="mt-8 space-y-4 flex flex-col items-center">
             {benefits.map((b) => (
               <div
