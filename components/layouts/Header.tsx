@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -12,6 +13,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import logo from "@/assets/medical-health-tele-logo.png";
 import { ChevronDown, ArrowRight } from "lucide-react";
+import { Menu } from "lucide-react";
+import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -58,9 +61,71 @@ export function Header() {
   ];
 
   const pathname = usePathname();
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+
   return (
     <header>
       <div className="container mx-auto flex items-center gap-6 px-4 py-4">
+        {/* mobile hamburger */}
+        <div className="md:hidden">
+          <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="p-2">
+                <Menu />
+                <span className="sr-only">Open menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-[75vw] p-4">
+              <nav className="flex flex-col gap-3">
+                {navItems.map((nav) => {
+                  const itemActive = pathname?.startsWith(nav.to);
+                  return (
+                    <div key={nav.label}>
+                      <Link
+                        href={nav.to}
+                        className={cn(
+                          "block font-medium",
+                          itemActive && "text-primary",
+                        )}
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {nav.label}
+                      </Link>
+                      {nav.items && nav.items.length > 0 && (
+                        <div className="ml-4 mt-1 flex flex-col gap-1">
+                          {nav.items.map((sub) => (
+                            <Link
+                              key={sub.to}
+                              href={sub.to}
+                              className={cn(
+                                "block text-sm",
+                                pathname?.startsWith(sub.to) && "text-primary",
+                              )}
+                              onClick={() => setMobileOpen(false)}
+                            >
+                              {sub.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </nav>
+              <div className="mt-6 flex flex-col gap-2">
+                <Link href="/dashboard" onClick={() => setMobileOpen(false)}>
+                  <Button className="w-full bg-accent">Sign In</Button>
+                </Link>
+                <Link href="/" onClick={() => setMobileOpen(false)}>
+                  <Button className="w-full bg-gradient-primary">
+                    Get Started
+                  </Button>
+                </Link>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
+
         <Link href="/" className="flex items-center gap-3">
           <Image
             src={logo}
@@ -106,7 +171,7 @@ export function Header() {
           })}
         </nav>
 
-        <div className="ml-auto flex items-center gap-2">
+        <div className="ml-auto hidden md:flex items-center gap-2">
           <Link href="/dashboard">
             <Button className="bg-accent ">
               <Image src={userIcon} alt="User Icon" className="size-4" />
