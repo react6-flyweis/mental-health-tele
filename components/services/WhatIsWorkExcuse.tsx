@@ -1,6 +1,7 @@
 import { Check, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { Container } from "@/components/ui/container";
 import { SectionHeader } from "@/components/ui/section-header";
 
 import workExcuseImage from "@/assets/services/work-excuse-letter.png";
@@ -19,7 +20,7 @@ export default function WhatIsWorkExcuse() {
 
   return (
     <section className="py-16 bg-white">
-      <div className="container mx-auto">
+      <Container>
         <div className="grid items-center gap-8 md:grid-cols-2">
           <div className="relative">
             <div className="max-w-md mx-auto relative">
@@ -64,7 +65,7 @@ export default function WhatIsWorkExcuse() {
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

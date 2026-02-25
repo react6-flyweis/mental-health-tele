@@ -1,6 +1,7 @@
 import { Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionHeader } from "@/components/ui/section-header";
+import { Container } from "@/components/ui/container";
 
 export default function WorkExcuseBenefits() {
   const benefits = [
@@ -28,7 +29,7 @@ export default function WorkExcuseBenefits() {
 
   return (
     <section className="py-12 bg-[#F4F9F8]">
-      <div className="container mx-auto">
+      <Container>
         <div className="max-w-5xl mx-auto text-center">
           <SectionHeader
             title="Key Benefits Of A Work"
@@ -61,7 +62,7 @@ export default function WorkExcuseBenefits() {
             </Button>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
