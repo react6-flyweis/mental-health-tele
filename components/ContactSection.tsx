@@ -82,7 +82,7 @@ export default function ContactSection() {
           description="We'd love to hear from you"
         />
 
-        <div className="mt-10 max-w-5xl mx-auto bg-white rounded-2xl p-10 shadow-lg">
+        <div className="mt-10 bg-white rounded-2xl p-10 shadow-lg">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* left: icon cards list */}
             <div className="space-y-6">
