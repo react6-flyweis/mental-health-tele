@@ -23,12 +23,15 @@ function TimelineEventCard({ event, direction }: TimelineEventCardProps) {
 
   return (
     <div
-      className={`w-1/2 ${isLeft ? "pr-8" : "pl-8"} ${isLeft ? "text-right" : "text-left"}`}
+      className={`w-full md:w-1/2 ${isLeft ? "md:pr-8" : "md:pl-8"} ${isLeft ? "md:text-right" : "md:text-left"}`}
     >
       <div
-        className={cn("flex items-center gap-5", !isLeft && "flex-row-reverse")}
+        className={cn(
+          "flex gap-5 flex-col md:flex-row items-start md:items-center",
+          !isLeft && "md:flex-row-reverse",
+        )}
       >
-        <div className="bg-white rounded-xl shadow-lg p-6 text-left flex items-start gap-4">
+        <div className="order-2 md:order-1 bg-white rounded-xl shadow-lg p-6 text-left flex items-start gap-4">
           <div className="flex-1">
             <span className="inline-block bg-gradient-primary text-white text-xs font-semibold px-2 py-1 rounded-full">
               {event.year}
@@ -39,7 +42,7 @@ function TimelineEventCard({ event, direction }: TimelineEventCardProps) {
             </p>
           </div>
         </div>
-        <div className="size-12 shadow-md rounded-full bg-gradient-primary flex shrink-0 justify-center items-center">
+        <div className="order-1 md:order-2 size-12 shadow-md rounded-full bg-gradient-primary flex shrink-0 justify-center items-center">
           <event.icon className="size-5 text-white" />
         </div>
       </div>
@@ -85,7 +88,7 @@ export default function VisionSection() {
 
           {/* timeline section */}
           <div className="relative mt-16 max-w-4xl mx-auto">
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-primary" />
+            <div className="absolute md:left-1/2 left-4 md:transform md:-translate-x-1/2 h-full w-1 bg-primary" />
 
             <div className="space-y-12">
               {[
@@ -127,8 +130,8 @@ export default function VisionSection() {
               ].map((event, idx) => (
                 <div
                   key={idx}
-                  className={`flex items-center w-full relative ${
-                    idx % 2 !== 0 ? "justify-start" : "justify-end"
+                  className={`flex w-full relative flex-col md:flex-row items-center ${
+                    idx % 2 !== 0 ? "md:justify-start" : "md:justify-end"
                   }`}
                 >
                   <TimelineEventCard
