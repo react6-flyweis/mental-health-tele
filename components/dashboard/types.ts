@@ -10,3 +10,16 @@ export type Provider = {
   available: string;
   initials: string;
 };
+
+export interface PrescriptionItem {
+  id: string;
+  medication: string;
+  dosage: string;
+  schedule: string;
+  instructions: string;
+  provider: string;
+  prescribedDate: string;
+  nextRefillDate: string;
+  refillsLeft: number;
+  status: "active" | "history";
+}
