@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { usePathname } from "next/navigation";
 import logo from "@/assets/medical-health-tele-logo.png";
+import { cn } from "@/lib/utils";
 
 import {
   Sidebar,
@@ -40,6 +41,16 @@ const SIDEBAR_MENU = [
 ];
 
 export default function DashSidebar() {
+  const pathname = usePathname();
+
+  function isMenuActive(href: string) {
+    if (href === "/dashboard") {
+      return pathname === "/dashboard";
+    }
+
+    return pathname === href || pathname.startsWith(`${href}/`);
+  }
+
   return (
     <Sidebar side="left">
       <SidebarHeader className="border-b p-3 mb-5">
@@ -50,16 +61,26 @@ export default function DashSidebar() {
 
       <SidebarContent>
         <SidebarMenu className="space-y-1">
-          {SIDEBAR_MENU.map(({ href, icon: Icon, label, isActive }) => (
-            <SidebarMenuItem key={href}>
-              <Link href={href}>
-                <SidebarMenuButton className="h-10" isActive={isActive}>
-                  <Icon />
-                  <span>{label}</span>
-                </SidebarMenuButton>
-              </Link>
-            </SidebarMenuItem>
-          ))}
+          {SIDEBAR_MENU.map(({ href, icon: Icon, label }) => {
+            const isActive = isMenuActive(href);
+
+            return (
+              <SidebarMenuItem key={href}>
+                <Link href={href}>
+                  <SidebarMenuButton
+                    className={cn(
+                      "h-10 rounded-none",
+                      isActive && "bg-gradient-dash text-white!",
+                    )}
+                    isActive={isActive}
+                  >
+                    <Icon />
+                    <span>{label}</span>
+                  </SidebarMenuButton>
+                </Link>
+              </SidebarMenuItem>
+            );
+          })}
         </SidebarMenu>
       </SidebarContent>
 
