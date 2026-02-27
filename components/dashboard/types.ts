@@ -22,4 +22,8 @@ export interface PrescriptionItem {
   nextRefillDate: string;
   refillsLeft: number;
   status: "active" | "history";
+
+  // history-specific fields
+  startDate?: string;
+  endDate?: string;
 }
