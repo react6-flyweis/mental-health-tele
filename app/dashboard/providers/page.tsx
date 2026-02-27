@@ -16,6 +16,8 @@ import {
 
 import { Star, Search } from "lucide-react";
 import BookAppointmentDialog from "@/components/dashboard/BookAppointmentDialog";
+import PaymentDialog from "@/components/dashboard/PaymentDialog";
+import { Button } from "@/components/ui/button";
 
 const PROVIDERS = [
   {
@@ -211,8 +213,15 @@ export default function page() {
                 ))}
               </div>
 
-              <div className="mt-6 w-full">
-                <BookAppointmentDialog provider={p} />
+              <div className="mt-6 w-full flex gap-2">
+                <div className="flex-1">
+                  <BookAppointmentDialog provider={p} />
+                </div>
+                <PaymentDialog>
+                  <Button variant="outline" className="w-full flex-1">
+                    Pay
+                  </Button>
+                </PaymentDialog>
               </div>
             </div>
           </Card>
