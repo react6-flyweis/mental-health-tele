@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, Info } from "lucide-react";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -16,6 +16,10 @@ import {
 } from "@/components/ui/input-group";
 import { ArrowRightIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+
+import export1Img from "@/assets/landing/expert-1.png";
+import export2Img from "@/assets/landing/expert-2.png";
+import export3Img from "@/assets/landing/expert-3.png";
 
 export default function PatientProfilePage() {
   const router = useRouter();
@@ -79,14 +83,17 @@ export default function PatientProfilePage() {
             <div className="flex items-center -space-x-3">
               <Avatar className="size-14 border border-slate-100 bg-white">
                 <AvatarFallback>JD</AvatarFallback>
+                <AvatarImage src={export1Img.src} />
               </Avatar>
               <Avatar className="size-14 border border-slate-100 bg-white">
                 <AvatarFallback>SR</AvatarFallback>
+                <AvatarImage src={export2Img.src} />
               </Avatar>
               <Avatar className="size-14 border border-slate-100 bg-white">
                 <AvatarFallback>LA</AvatarFallback>
+                <AvatarImage src={export3Img.src} />
               </Avatar>
-              <div className="size-12 rounded-full bg-[#eef8f6] border border-[#E6F3F1] flex items-center justify-center text-sm font-semibold text-[#274A48]">
+              <div className="size-12 rounded-full bg-[#eef8f6] z-10 border border-[#E6F3F1] flex items-center justify-center text-sm font-semibold text-[#274A48]">
                 50+
               </div>
             </div>
@@ -222,16 +229,16 @@ export default function PatientProfilePage() {
                   checked={agreeTerms}
                   onCheckedChange={(v) => setAgreeTerms(!!v)}
                 />
-                <Label htmlFor="terms" className="text-sm">
-                  I Agree To The Mental Health Tele Health{" "}
+                <Label htmlFor="terms" className="text-sm flex flex-wrap">
+                  I Agree To The Mental Health Tele Health
                   <Link
                     href="#"
-                    className="text-[#4A7C7E] hover:underline ml-1"
+                    className="inline text-[#4A7C7E] hover:underline"
                   >
                     Terms Of Use, Privacy Policy, Terms And Conditions,
                     Telehealth Consent, Artificial Intelligence Usage Consent,
                     Refund Policy
-                  </Link>{" "}
+                  </Link>
                   And To Receive Login And Appointment Links Via SMS.*
                 </Label>
               </div>
