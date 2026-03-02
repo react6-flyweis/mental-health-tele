@@ -1,10 +1,11 @@
 "use client";
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
 
 import newPatientIcon from "@/assets/icons/new-patient.svg";
 import continueCareIcon from "@/assets/icons/care-patient.svg";
+import export1Img from "@/assets/landing/expert-1.png";
 
 type PatientTypeStepProps = {
   selectedPlan: "new" | "continue" | null;
@@ -20,6 +21,7 @@ export default function PatientTypeStep({
       <div className="flex flex-col items-center text-center space-y-1 px-2">
         <Avatar className="size-28 border border-slate-100 bg-white">
           <AvatarFallback className="text-slate-700">MC</AvatarFallback>
+          <AvatarImage src={export1Img.src} />
         </Avatar>
 
         <div className="space-y-1">
