@@ -17,6 +17,7 @@ import DateStep from "@/components/dashboard/steps/DateStep";
 import TimeStep from "@/components/dashboard/steps/TimeStep";
 import DetailsStep from "@/components/dashboard/steps/DetailsStep";
 import ConfirmStep from "@/components/dashboard/steps/ConfirmStep";
+import PaymentDialog from "@/components/dashboard/PaymentDialog";
 import { Provider } from "@/components/dashboard/types";
 
 export default function BookAppointmentDialog({
@@ -127,27 +128,27 @@ export default function BookAppointmentDialog({
               ""
             )}
 
-            <Button
-              className="flex-1 bg-gradient-dash"
-              onClick={() => {
-                if (step === 2 && !date) return;
-                if (step === 3 && !selectedTime) return;
-                if (step === 5) {
-                  console.log("Confirming booking", {
-                    provider: provider.name,
-                    date: date?.toISOString(),
-                    time: selectedTime,
-                    sessionType,
-                    reason,
-                  });
-                  return;
+            {step === 5 ? (
+              <PaymentDialog>
+                <Button size="lg" className="flex-1 bg-gradient-dash">
+                  Pay Now
+                </Button>
+              </PaymentDialog>
+            ) : (
+              <Button
+                className="flex-1 bg-gradient-dash"
+                onClick={() => {
+                  if (step === 2 && !date) return;
+                  if (step === 3 && !selectedTime) return;
+                  setStep((s) => Math.min(5, s + 1));
+                }}
+                disabled={
+                  (step === 2 && !date) || (step === 3 && !selectedTime)
                 }
-                setStep((s) => Math.min(5, s + 1));
-              }}
-              disabled={(step === 2 && !date) || (step === 3 && !selectedTime)}
-            >
-              {step === 1 ? "Next" : step === 5 ? "Pay Now" : "Next"}
-            </Button>
+              >
+                Next
+              </Button>
+            )}
           </div>
         </DialogFooter>
       </DialogContent>
