@@ -4,7 +4,8 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft, Calendar, Clock, Check } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import export1Img from "@/assets/landing/expert-1.png";
 
 export default function ConfirmAppointmentPage() {
   const router = useRouter();
@@ -40,8 +41,9 @@ export default function ConfirmAppointmentPage() {
 
           <div className="p-4">
             <div className="flex gap-4">
-              <Avatar className="size-12 border border-slate-100 bg-white">
+              <Avatar className="size-12 rounded-none">
                 <AvatarFallback>AS</AvatarFallback>
+                <AvatarImage src={export1Img.src} />
               </Avatar>
 
               <div className="flex-1">
@@ -106,7 +108,7 @@ export default function ConfirmAppointmentPage() {
           <Button
             size="lg"
             className="h-12 w-44 bg-gradient-primary text-white hover:opacity-95 ml-auto"
-            onClick={() => console.log("Pay Now clicked — placeholder")}
+            onClick={() => router.push("/appointment/payment")}
           >
             Pay Now
           </Button>
