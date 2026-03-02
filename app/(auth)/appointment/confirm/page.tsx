@@ -10,7 +10,7 @@ export default function ConfirmAppointmentPage() {
   const router = useRouter();
 
   return (
-    <Card className="shadow-lg gap-0">
+    <Card className="shadow-lg gap-0 max-w-lg mx-auto">
       <CardHeader className="border-b-0">
         <Button
           variant="ghost"

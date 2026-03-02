@@ -60,7 +60,7 @@ export default function PatientProfilePage() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto py-8 px-4">
+    <div className="max-w-lg mx-auto py-8 px-4">
       <Card className="shadow-lg gap-0">
         <CardHeader className="border-b-0">
           <Button
