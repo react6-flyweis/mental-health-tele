@@ -1,10 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowLeft, ArrowRight, Calendar, Clock, Trash2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Trash2 } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+
+import dateRangeIcon from "@/assets/icons/date-range.svg";
+import dateTodayIcon from "@/assets/icons/date-today.svg";
+import Image from "next/image";
 
 export default function AppointmentPage() {
   const router = useRouter();
@@ -23,7 +27,7 @@ export default function AppointmentPage() {
     setSlots((s) => s.filter((x) => x.id !== id));
 
   return (
-    <Card className="shadow-lg gap-0">
+    <Card className="shadow-lg gap-0 max-w-lg mx-auto">
       <CardHeader className="border-b-0">
         <Button
           variant="ghost"
@@ -52,10 +56,8 @@ export default function AppointmentPage() {
                 : "border-[#E6F3F1] bg-[#f7fbfa] hover:shadow-sm"
             }`}
           >
-            <div className="p-3 rounded-md bg-[#eef8f6] mb-3">
-              <Calendar className="h-6 w-6 text-[#2F6F6A]" />
-            </div>
-            <div className="font-semibold text-base text-[#2F6F6A]">
+            <Image src={dateTodayIcon} alt="Any Time Today" className="mb-3" />
+            <div className="font-semibold text-base text-primary">
               Any Time Today
             </div>
           </div>
@@ -69,9 +71,11 @@ export default function AppointmentPage() {
                 : "border-[#E6F3F1] bg-[#f7fbfa] hover:shadow-sm"
             }`}
           >
-            <div className="p-3 rounded-md bg-white mb-3">
-              <Clock className="h-6 w-6 text-slate-800" />
-            </div>
+            <Image
+              src={dateRangeIcon}
+              alt="Pick A Time Range"
+              className="mb-3"
+            />
             <div className="font-semibold text-base">Pick A Time Range</div>
           </div>
         </div>
