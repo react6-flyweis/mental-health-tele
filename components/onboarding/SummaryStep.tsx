@@ -1,11 +1,12 @@
 "use client";
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
 
 import shareTreatment from "@/assets/icons/share-treatment.svg";
 import contactIcon from "@/assets/icons/contact.svg";
 import newPatientIcon from "@/assets/icons/new-patient.svg";
+import export1Img from "@/assets/landing/expert-1.png";
 
 type SummaryStepProps = {
   selectedPlan: "new" | "continue" | null;
@@ -21,6 +22,7 @@ export default function SummaryStep({
       <div className="flex flex-col items-center text-center space-y-2">
         <Avatar className="size-28 border border-slate-100 bg-white">
           <AvatarFallback className="text-slate-700">MC</AvatarFallback>
+          <AvatarImage src={export1Img.src} />
         </Avatar>
 
         <div className="text-xl font-semibold">Dr. Michael Chichak, MD</div>
