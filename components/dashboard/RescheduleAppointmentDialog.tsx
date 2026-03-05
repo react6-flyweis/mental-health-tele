@@ -59,7 +59,7 @@ export default function RescheduleAppointmentDialog({
         )}
       </DialogTrigger>
 
-      <DialogContent className="sm:max-w-lg">
+      <DialogContent className="w-full max-w-sm sm:max-w-lg max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="font-semibold">
             Reschedule Appointment
@@ -83,7 +83,10 @@ export default function RescheduleAppointmentDialog({
           {/* slot list */}
           <div className="space-y-3">
             {slots.map((slot) => (
-              <div key={slot.id} className="flex items-center gap-4">
+              <div
+                key={slot.id}
+                className="flex flex-col md:flex-row md:items-center items-center gap-4"
+              >
                 <div className="px-4 py-3 bg-slate-50 rounded-md text-sm text-slate-700 w-28 text-left">
                   {slot.date}
                 </div>
