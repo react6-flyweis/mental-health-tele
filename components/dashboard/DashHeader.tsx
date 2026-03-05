@@ -7,14 +7,16 @@ import {
 } from "@/components/ui/input-group";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Bell, Search } from "lucide-react";
+import { SidebarTrigger } from "../ui/sidebar";
 
 export default function DashHeader() {
   return (
     <header className="w-full">
       <div className="container mx-auto flex items-center justify-between gap-6 px-4 py-4">
         {/* Search */}
-        <div className="flex-1 max-w-sm">
-          <InputGroup className="h-10 border bg-muted/70 shadow-none">
+        <div className="flex-1 flex items-center gap-4">
+          <SidebarTrigger className="md:hidden" />
+          <InputGroup className=" max-w-sm h-10 border bg-muted/70 shadow-none">
             <InputGroupAddon className="pl-4">
               <Search className="size-4 text-muted-foreground" />
             </InputGroupAddon>
