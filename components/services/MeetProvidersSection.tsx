@@ -18,21 +18,21 @@ import expertImg4 from "@/assets/landing/expert-4.png";
 const providers = [
   {
     id: 1,
-    name: "Dr. Michael Chichak, MD",
+    name: "Dr. Jane Smith, MD",
     description:
       "A Highly Experienced Physician With A Strong Background In Primary Care And Mental Health — Committed To Personalized, Evidence-Based Treatment.",
     image: expertImg4,
   },
   {
     id: 2,
-    name: "Dr. Michael Chichak, MD",
+    name: "Dr. Alex Johnson, MD",
     description:
       "A Highly Experienced Physician With A Strong Background In Primary Care And Mental Health — Committed To Personalized, Evidence-Based Treatment.",
     image: expertImg1,
   },
   {
     id: 3,
-    name: "Dr. Michael Chichak, MD",
+    name: "Dr. Priya Patel, MD",
     description:
       "A Highly Experienced Physician With A Strong Background In Primary Care And Mental Health — Committed To Personalized, Evidence-Based Treatment.",
     image: expertImg2,
