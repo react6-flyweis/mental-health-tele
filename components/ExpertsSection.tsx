@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Check, ChevronRight } from "lucide-react";
 import { Button } from "./ui/button";
@@ -10,6 +9,7 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "./ui/carousel";
+import AutoScroll from "embla-carousel-auto-scroll";
 import { Container } from "./ui/container";
 import { SectionHeader } from "./ui/section-header";
 
@@ -70,9 +70,9 @@ export default function ExpertsSection() {
           description="Our Mental Health Specialists Are Dedicated To Understanding Your Needs And Supporting You With Thoughtful, Professional Care At Every Step."
         />
 
-        <div className="max-w-6xl mx-auto mt-10 grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+        <div className="max-w-6xl mx-auto mt-10 grid grid-cols-1 md:grid-cols-7 gap-8 items-start">
           {/* left features + CTA */}
-          <div>
+          <div className="md:col-span-2">
             <div className="">
               <ul className="space-y-4">
                 {features.map((f) => (
@@ -102,15 +102,24 @@ export default function ExpertsSection() {
           </div>
 
           {/* carousel */}
-          <div className="md:col-span-2">
+          <div className="md:col-span-5">
             <div className="relative ">
-              <Carousel>
+              <Carousel
+                opts={{ loop: true }}
+                plugins={[
+                  AutoScroll({
+                    speed: 1,
+                    stopOnInteraction: false,
+                    stopOnMouseEnter: true,
+                  }),
+                ]}
+              >
                 <CarouselContent className="gap-6 -mx-2">
                   {(experts.length ? experts : new Array(5).fill(null)).map(
                     (ex, i) => (
                       <div
                         key={ex?.login?.uuid ?? i}
-                        className="pl-4 shrink-0 w-65 md:w-75 lg:w-[320px] bg-white rounded-2xl border border-slate-100 shadow-sm p-3 hover:shadow-md transition-shadow"
+                        className="pl-4 shrink-0 w-65 md:w-60 lg:w-[320px] bg-white rounded-2xl border border-slate-100 shadow-sm p-3 hover:shadow-md transition-shadow"
                       >
                         <div className="overflow-hidden rounded-xl aspect-square mb-3 ">
                           {ex ? (
