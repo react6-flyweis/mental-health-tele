@@ -57,7 +57,7 @@ export default function page() {
           </CardHeader>
 
           <CardContent className="flex justify-between gap-6">
-            <div className="flex  gap-4">
+            <div className="flex  flex-col md:flex-row  gap-4">
               <Avatar className="size-20 border border-slate-100 bg-white">
                 <AvatarFallback>EC</AvatarFallback>
               </Avatar>

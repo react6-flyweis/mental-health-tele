@@ -98,7 +98,7 @@ export default function PrescriptionsPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <div className="grid grid-cols-2 gap-4  lg:grid-cols-3">
         {summaryCards.map((card) => {
           const Icon = card.icon;
           return (
