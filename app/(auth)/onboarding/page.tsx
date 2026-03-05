@@ -7,21 +7,24 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
+import StateSelectionStep from "@/components/onboarding/StateSelectionStep";
 import TreatmentsStep from "@/components/onboarding/TreatmentsStep";
 import PatientTypeStep from "@/components/onboarding/PatientTypeStep";
 import SummaryStep from "@/components/onboarding/SummaryStep";
 
 export default function OnboardingPage() {
+  const [selectedState, setSelectedState] = useState("");
   const [selectedTreatments, setSelectedTreatments] = useState<string[]>([]);
   const [selectedPlan, setSelectedPlan] = useState<"new" | "continue" | null>(
     null,
   );
-  const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
   const router = useRouter();
 
-  // step 1: choose treatments (no auto-hide)
-  // step 2: choose patient type (revealed after pressing Continue)
-  // step 3: provider summary + booking (final step)
+  // step 1: select state
+  // step 2: choose treatments (no auto-hide)
+  // step 3: choose patient type (revealed after pressing Continue)
+  // step 4: provider summary + booking (final step)
 
   const handleCheckboxChange = (treatment: string) => {
     setSelectedTreatments((prev) => {
@@ -39,6 +42,8 @@ export default function OnboardingPage() {
   const handleContinue = () => {
     // Replace with real navigation / API call later
     console.log(
+      "Selected state:",
+      selectedState,
       "Selected treatments:",
       selectedTreatments,
       "plan:",
@@ -46,13 +51,17 @@ export default function OnboardingPage() {
     );
   };
 
-  const isStep1Ready = selectedTreatments.length > 0;
-  const isStep2Ready = !!selectedPlan;
+  const isStep1Ready = !!selectedState;
+  const isStep2Ready = selectedTreatments.length > 0;
+  const isStep3Ready = !!selectedPlan;
   const isPrimaryEnabled =
-    (step === 1 && isStep1Ready) || (step === 2 && isStep2Ready) || step === 3; // step 3 is the final summary/booking step and is always actionable
+    (step === 1 && isStep1Ready) ||
+    (step === 2 && isStep2Ready) ||
+    (step === 3 && isStep3Ready) ||
+    step === 4; // step 4 is the final summary/booking step and is always actionable
 
   const primaryClass = isPrimaryEnabled
-    ? step === 3
+    ? step === 4
       ? "bg-gradient-to-r from-[#2F6F6A] to-[#39B09B] text-white hover:opacity-95"
       : "bg-[#4A7C7E] hover:bg-[#3d6567] text-white"
     : "bg-gray-200 text-gray-500 cursor-not-allowed";
@@ -70,7 +79,13 @@ export default function OnboardingPage() {
       return;
     }
 
-    // step 3 -> final submit (booking)
+    if (step === 3) {
+      if (!isStep3Ready) return;
+      setStep(4);
+      return;
+    }
+
+    // step 4 -> final submit (booking)
     handleContinue();
     // route to the appointment booking page inside onboarding
     router.push("/onboarding/profile");
@@ -86,7 +101,7 @@ export default function OnboardingPage() {
           onClick={() => {
             // navigate between steps when inside the flow; otherwise go back in history
             if (step > 1) {
-              setStep(step === 3 ? 2 : 1);
+              setStep((step - 1) as 1 | 2 | 3 | 4);
               return;
             }
             window.history.back();
@@ -98,21 +113,28 @@ export default function OnboardingPage() {
 
       <CardContent className="space-y-3">
         {step === 1 && (
+          <StateSelectionStep
+            selectedState={selectedState}
+            onSelectState={setSelectedState}
+          />
+        )}
+
+        {step === 2 && (
           <TreatmentsStep
             selectedTreatments={selectedTreatments}
             onToggleTreatment={handleCheckboxChange}
           />
         )}
 
-        {/* Step 2: patient-type selection (matches design in screenshot) */}
-        {step === 2 && (
+        {/* Step 3: patient-type selection (matches design in screenshot) */}
+        {step === 3 && (
           <PatientTypeStep
             selectedPlan={selectedPlan}
             onSelectPlan={(plan) => setSelectedPlan(plan)}
           />
         )}
 
-        {step === 3 && (
+        {step === 4 && (
           <SummaryStep
             selectedPlan={selectedPlan}
             selectedTreatments={selectedTreatments}
@@ -125,7 +147,7 @@ export default function OnboardingPage() {
           onClick={handleMainContinue}
           disabled={!isPrimaryEnabled}
         >
-          {step === 3 ? "Book My Appointment" : "Continue"}
+          {step === 4 ? "Book My Appointment" : "Continue"}
           <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
 
