@@ -25,16 +25,26 @@ export default function MessagesPage() {
       </header>
 
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-[320px_minmax(0,1fr)]">
-        <MessagesSidebar
-          conversations={conversations}
-          activeConversationId={activeConversationId}
-          onConversationSelect={setActiveConversationId}
-        />
+        {/* sidebar should be hidden on small screens when a convo is active */}
+        <div
+          className={`${activeConversationId ? "hidden" : "block"} xl:block`}
+        >
+          <MessagesSidebar
+            conversations={conversations}
+            activeConversationId={activeConversationId}
+            onConversationSelect={setActiveConversationId}
+          />
+        </div>
 
-        <ChatWindow
-          activeConversation={activeConversation}
-          onCloseConversation={() => setActiveConversationId(undefined)}
-        />
+        {/* chat window takes full width on mobile when open, otherwise hide until a convo is selected */}
+        <div
+          className={`${activeConversationId ? "block" : "hidden"} xl:block`}
+        >
+          <ChatWindow
+            activeConversation={activeConversation}
+            onCloseConversation={() => setActiveConversationId(undefined)}
+          />
+        </div>
       </div>
     </div>
   );

@@ -30,7 +30,7 @@ export function ChatWindow({
   }
 
   return (
-    <section className="flex h-full min-h-[620px] flex-col rounded-xl border bg-card">
+    <section className="w-full flex h-full min-h-[620px] flex-col rounded-xl border bg-card">
       <ChatHeader
         conversation={activeConversation}
         onClose={onCloseConversation}

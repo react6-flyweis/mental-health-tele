@@ -29,7 +29,7 @@ export function ChatHeader({ conversation, onClose }: ChatHeaderProps) {
         variant="ghost"
         size="icon"
         onClick={onClose}
-        className="text-muted-foreground"
+        className="text-muted-foreground xl:hidden"
       >
         <X className="size-5" />
       </Button>
