@@ -114,7 +114,10 @@ export function Header() {
               </nav>
               <div className="mt-6 flex flex-col gap-2">
                 <Link href="/dashboard" onClick={() => setMobileOpen(false)}>
-                  <Button className="w-full bg-accent">Sign In</Button>
+                  <Button className="w-full bg-accent text-primary">
+                    <Image src={userIcon} alt="User Icon" className="size-4" />
+                    Sign In
+                  </Button>
                 </Link>
                 <Link href="/" onClick={() => setMobileOpen(false)}>
                   <Button className="w-full bg-gradient-primary">
