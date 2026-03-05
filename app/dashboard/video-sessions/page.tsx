@@ -74,7 +74,7 @@ export default function page() {
           </div>
 
           <div className="flex flex-col items-center gap-2">
-            <div className="size-24 rounded-full bg-white/20 flex items-center justify-center">
+            <div className="size-20 md:size-24 rounded-full bg-white/20 flex items-center justify-center">
               <Clock3 className="size-10" />
             </div>
             <span className="text-xs text-white/90">00:05:23</span>

@@ -27,7 +27,7 @@ export default function Page() {
       </header>
 
       <Tabs defaultValue="Profile">
-        <TabsList className="h-fit! w-full rounded-full bg-muted p-1 mb-5">
+        <TabsList className="h-fit! w-full rounded-full bg-muted p-1 mb-5 overflow-x-auto">
           {settingsTabs.map((tab) => (
             <TabsTrigger
               key={tab}
