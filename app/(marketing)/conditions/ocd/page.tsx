@@ -4,7 +4,7 @@ import OcdTherapy from "@/components/conditions/OcdTherapy";
 import OcdContributors from "@/components/conditions/OcdContributors";
 import OcdCommonExperiences from "@/components/conditions/OcdCommonExperiences";
 import OcdMedication from "@/components/conditions/OcdMedication";
-import AdhdHowItWorks from "@/components/services/AdhdHowItWorks";
+import OcdHowItWorks from "@/components/conditions/OcdHowItWorks";
 import MeetProvidersSection from "@/components/services/MeetProvidersSection";
 import PatientPortalSection from "@/components/services/PatientPortalSection";
 import TreatmentsPricing from "@/components/services/TreatmentsPricing";
@@ -16,7 +16,7 @@ export default function page() {
     <>
       <OcdHero />
       <AnxietyWhyChoose />
-      <AdhdHowItWorks />
+      <OcdHowItWorks />
       <TreatmentsPricing
         title="Simple, Honest"
         subtitle="pricing"
