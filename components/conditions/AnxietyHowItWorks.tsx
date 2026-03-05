@@ -33,7 +33,7 @@ export default function AnxietyHowItWorks() {
           <SectionHeader
             title="How It"
             subtitle="works"
-            description="Four simple steps to getting the ADHD care you deserve."
+            description="Our simple process to getting the anxiety care you deserve."
             className="mb-10"
           />
         </div>
