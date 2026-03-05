@@ -11,22 +11,22 @@ export default function SuccessStoriesSection() {
         <div className="max-w-6xl mx-auto mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
           {[
             {
-              name: "John Deo",
-              country: "United States",
-              rating: "5.0",
+              name: "Emily Johnson",
+              country: "Canada",
+              rating: "4.9",
               text: "I Wanted A Natural Solution Without Harsh Side Effects, And This Capsule Delivered! Within A Week, I Felt More Energized, And My Stamina Improved. Definitely Worth It!",
             },
             {
               name: "Kianna Curtis",
               country: "United States",
               rating: "5.0",
-              text: "This Product Has Completely Changed My Intimate Life. I Feel More Passionate And Confident, And The Effects Last For Hours. I Never Expected Such A Huge Difference!",
+              text: "The convenience of video sessions made it possible to continue therapy during a hectic work schedule. The tools and techniques I've learned have helped me manage stress every day.",
             },
             {
-              name: "Corey Bergson",
-              country: "United States",
-              rating: "5.0",
-              text: "I Was Struggling With Low Energy And Performance Issues, But After Using [Product Name] For A Month, I Feel Like I'm In My 20s Again! My Confidence Is Back",
+              name: "Lena Hoffmann",
+              country: "Germany",
+              rating: "4.8",
+              text: "After years of struggling with depression, I finally found a provider who understood me. The progress I've made with Mental Health Tele is something I never thought possible.",
             },
           ].map((s, i) => (
             <div key={i} className="bg-slate-50 rounded-xl p-4 h-full">
