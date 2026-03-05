@@ -36,7 +36,7 @@ export default function TreatmentsFeatures() {
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-2xl md:text-3xl font-medium tracking-tight">
             <span className="block">
-              <span className="bg-clip-text bg-gradient-primary text-transparent">
+              <span className="text-gradient bg-gradient-primary">
                 Why People Prefer{" "}
               </span>
               <span className="font-semibold">Our Platform</span>

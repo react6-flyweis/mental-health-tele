@@ -132,12 +132,18 @@
 
 @layer utilities {
   .bg-gradient-primary {
-    @apply bg-gradient-to-r from-[#346079] to-[#219580];
+    background-image: linear-gradient(to right, #346079, #219580);
   }
   .bg-gradient-dash {
-    @apply bg-gradient-to-t from-[#346079] to-[#219580];
+    background-image: linear-gradient(to top, #346079, #219580);
   }
   .bg-sidebar-accent {
-    @apply bg-gradient-to-t from-[#346079] to-[#219580];
+    background-image: linear-gradient(to top, #346079, #219580);
+  }
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
   }
 }

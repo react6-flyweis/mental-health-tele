@@ -179,9 +179,7 @@ export function Header() {
             <Button className="bg-accent ">
               <Image src={userIcon} alt="User Icon" className="size-4" />
 
-              <span className="bg-clip-text text-transparent bg-gradient-primary">
-                Sign In
-              </span>
+              <span className="text-gradient bg-gradient-primary">Sign In</span>
             </Button>
           </Link>
 
