@@ -61,9 +61,7 @@ export default function OnboardingPage() {
     step === 4; // step 4 is the final summary/booking step and is always actionable
 
   const primaryClass = isPrimaryEnabled
-    ? step === 4
-      ? "bg-gradient-to-r from-[#2F6F6A] to-[#39B09B] text-white hover:opacity-95"
-      : "bg-[#4A7C7E] hover:bg-[#3d6567] text-white"
+    ? "bg-gradient-primary"
     : "bg-gray-200 text-gray-500 cursor-not-allowed";
 
   const handleMainContinue = () => {
