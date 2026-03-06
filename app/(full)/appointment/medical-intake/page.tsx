@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
@@ -9,7 +9,7 @@ import { ArrowLeft } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Field, FieldLabel, FieldError } from "@/components/ui/field";
 import {
   Select,
   SelectContent,
@@ -32,17 +32,33 @@ const PHQ_QUESTIONS = [
   "Thoughts that you would be better off dead or of hurting yourself in some way",
 ];
 
+const phqSchema = z.object(
+  Object.fromEntries(
+    PHQ_QUESTIONS.map((_, index) => [
+      String(index + 1),
+      z
+        .number({ required_error: "Please select one option" })
+        .int()
+        .min(0)
+        .max(3),
+    ]),
+  ) as Record<string, z.ZodNumber>,
+);
+
 const intakeFormSchema = z.object({
   // basic info
-  firstName: z.string().min(1),
+  firstName: z.string().min(1, { message: "First name is required" }),
   middleInitial: z.string().optional(),
-  lastName: z.string().min(1),
-  sex: z.string().min(1),
-  dob: z.string().min(1),
+  lastName: z.string().min(1, { message: "Last name is required" }),
+  sex: z.string().min(1, { message: "Please select your sex" }),
+  dob: z.string().min(1, { message: "Date of birth is required" }),
   primaryPhone: z.string().optional(),
   mobilePhone: z.string().optional(),
   workPhone: z.string().optional(),
-  email: z.string().email().optional(),
+  email: z
+    .string()
+    .email({ message: "Enter a valid email address" })
+    .optional(),
   address1: z.string().optional(),
   address2: z.string().optional(),
   city: z.string().optional(),
@@ -78,7 +94,7 @@ const intakeFormSchema = z.object({
   heardFrom: z.string().optional(),
 
   // phq
-  phq: z.record(z.number()).optional(),
+  phq: phqSchema,
   difficulty: z.string().optional(),
 });
 
@@ -92,6 +108,10 @@ export default function MedicalIntakePage() {
       sex: "",
       phq: {},
     },
+    // validate on submit, re-validate on change and focus the first error
+    mode: "onSubmit",
+    reValidateMode: "onChange",
+    shouldFocusError: true,
   });
 
   // dynamic lists
@@ -110,7 +130,10 @@ export default function MedicalIntakePage() {
   ) {
     if (!value) return;
     const current = form.getValues(field) || [];
-    form.setValue(field, [...current, value]);
+    form.setValue(field, [...current, value], {
+      shouldValidate: true,
+      shouldTouch: true,
+    });
   }
 
   function onSubmit(data: IntakeFormValues) {
@@ -131,7 +154,18 @@ export default function MedicalIntakePage() {
       >
         <ArrowLeft className="h-5 w-5" />
       </Button>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form
+        onSubmit={form.handleSubmit(onSubmit, (errors) => {
+          console.log("validation errors", errors);
+        })}
+        className="space-y-4"
+      >
+        {/* summary */}
+        {Object.keys(form.formState.errors).length > 0 && (
+          <div className="mb-4 text-destructive">
+            Please correct the errors below before submitting.
+          </div>
+        )}
         {/* basic information */}
         <Card>
           <CardHeader>
@@ -141,91 +175,112 @@ export default function MedicalIntakePage() {
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 ">
-              <div className="space-y-2">
-                <Label>Full Name</Label>
+              <Field>
+                <FieldLabel>Full Name</FieldLabel>
                 <Input {...form.register("firstName")} />
-              </div>
-              <div className="space-y-2">
-                <Label>Middle Initial</Label>
+                <FieldError errors={[form.formState.errors.firstName]} />
+              </Field>
+              <Field>
+                <FieldLabel>Middle Initial</FieldLabel>
                 <Input {...form.register("middleInitial")} />
-              </div>
-              <div className="space-y-2">
-                <Label>Last Name</Label>
+                <FieldError errors={[form.formState.errors.middleInitial]} />
+              </Field>
+              <Field>
+                <FieldLabel>Last Name</FieldLabel>
                 <Input {...form.register("lastName")} />
-              </div>
+                <FieldError errors={[form.formState.errors.lastName]} />
+              </Field>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="space-y-2">
-                <Label>Sex</Label>
-                <Select onValueChange={(v) => form.setValue("sex", v)}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Male">Male</SelectItem>
-                    <SelectItem value="Female">Female</SelectItem>
-                    <SelectItem value="Other">Other</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-2">
-                <Label>DOB</Label>
+              <Field>
+                <FieldLabel htmlFor="sex">Sex</FieldLabel>
+                <Controller
+                  control={form.control}
+                  name="sex"
+                  render={({ field }) => (
+                    <Select value={field.value} onValueChange={field.onChange}>
+                      <SelectTrigger id="sex">
+                        <SelectValue placeholder="Select" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Male">Male</SelectItem>
+                        <SelectItem value="Female">Female</SelectItem>
+                        <SelectItem value="Other">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+                <FieldError errors={[form.formState.errors.sex]} />
+              </Field>
+              <Field>
+                <FieldLabel>DOB</FieldLabel>
                 <Input type="date" {...form.register("dob")} />
-              </div>
-              <div className="space-y-2">
-                <Label>Marital Status</Label>
+                <FieldError errors={[form.formState.errors.dob]} />
+              </Field>
+              <Field>
+                <FieldLabel>Marital Status</FieldLabel>
                 <Input {...form.register("maritalStatus")} />
-              </div>
+                <FieldError errors={[form.formState.errors.maritalStatus]} />
+              </Field>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label>Primary Phone Number</Label>
+              <Field>
+                <FieldLabel>Primary Phone Number</FieldLabel>
                 <Input {...form.register("primaryPhone")} />
-              </div>
-              <div className="space-y-2">
-                <Label>Mobile Number</Label>
+                <FieldError errors={[form.formState.errors.primaryPhone]} />
+              </Field>
+              <Field>
+                <FieldLabel>Mobile Number</FieldLabel>
                 <Input {...form.register("mobilePhone")} />
-              </div>
-              <div className="space-y-2">
-                <Label>Work Phone Number</Label>
+                <FieldError errors={[form.formState.errors.mobilePhone]} />
+              </Field>
+              <Field>
+                <FieldLabel>Work Phone Number</FieldLabel>
                 <Input {...form.register("workPhone")} />
-              </div>
-              <div className="space-y-2">
-                <Label>Email</Label>
+                <FieldError errors={[form.formState.errors.workPhone]} />
+              </Field>
+              <Field>
+                <FieldLabel>Email</FieldLabel>
                 <Input type="email" {...form.register("email")} />
-              </div>
+                <FieldError errors={[form.formState.errors.email]} />
+              </Field>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label>Address</Label>
+              <Field>
+                <FieldLabel>Address</FieldLabel>
                 <Input {...form.register("address1")} />
-              </div>
-              <div className="space-y-2">
-                <Label>Address 2</Label>
+                <FieldError errors={[form.formState.errors.address1]} />
+              </Field>
+              <Field>
+                <FieldLabel>Address 2</FieldLabel>
                 <Input {...form.register("address2")} />
-              </div>
+                <FieldError errors={[form.formState.errors.address2]} />
+              </Field>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="space-y-2">
-                <Label>City</Label>
+              <Field>
+                <FieldLabel>City</FieldLabel>
                 <Input {...form.register("city")} />
-              </div>
-              <div className="space-y-2">
-                <Label>State</Label>
+                <FieldError errors={[form.formState.errors.city]} />
+              </Field>
+              <Field>
+                <FieldLabel>State</FieldLabel>
                 <Input {...form.register("state")} />
-              </div>
-              <div className="space-y-2">
-                <Label>Zip</Label>
+                <FieldError errors={[form.formState.errors.state]} />
+              </Field>
+              <Field>
+                <FieldLabel>Zip</FieldLabel>
                 <Input {...form.register("zip")} />
-              </div>
+                <FieldError errors={[form.formState.errors.zip]} />
+              </Field>
             </div>
 
-            <div className="space-y-2">
-              <Label>State Driving License / State Id</Label>
+            <Field>
+              <FieldLabel>State Driving License / State Id</FieldLabel>
               <div className="flex gap-4 items-center">
                 <Input
                   className="flex-1"
@@ -235,7 +290,8 @@ export default function MedicalIntakePage() {
                   Upload Here
                 </Button>
               </div>
-            </div>
+              <FieldError errors={[form.formState.errors.drivingLicense]} />
+            </Field>
           </CardContent>
         </Card>
 
@@ -248,67 +304,155 @@ export default function MedicalIntakePage() {
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label>Relationship To Contact</Label>
+              <Field>
+                <FieldLabel>Relationship To Contact</FieldLabel>
                 <Input {...form.register("emergency.relationship")} />
-              </div>
-              <div className="space-y-2">
-                <Label>First Name</Label>
+                <FieldError
+                  errors={[
+                    form.formState.errors.emergency
+                      ?.relationship as unknown as { message?: string },
+                  ]}
+                />
+              </Field>
+              <Field>
+                <FieldLabel>First Name</FieldLabel>
                 <Input {...form.register("emergency.firstName")} />
-              </div>
-              <div className="space-y-2">
-                <Label>Middle Name</Label>
+                <FieldError
+                  errors={[
+                    form.formState.errors.emergency?.firstName as unknown as {
+                      message?: string;
+                    },
+                  ]}
+                />
+              </Field>
+              <Field>
+                <FieldLabel>Middle Name</FieldLabel>
                 <Input {...form.register("emergency.middleName")} />
-              </div>
-              <div className="space-y-2">
-                <Label>Last Name</Label>
+                <FieldError
+                  errors={[
+                    form.formState.errors.emergency?.middleName as unknown as {
+                      message?: string;
+                    },
+                  ]}
+                />
+              </Field>
+              <Field>
+                <FieldLabel>Last Name</FieldLabel>
                 <Input {...form.register("emergency.lastName")} />
-              </div>
+                <FieldError
+                  errors={[
+                    form.formState.errors.emergency?.lastName as unknown as {
+                      message?: string;
+                    },
+                  ]}
+                />
+              </Field>
             </div>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label>Primary Phone Number</Label>
+              <Field>
+                <FieldLabel>Primary Phone Number</FieldLabel>
                 <Input {...form.register("emergency.primaryPhone")} />
-              </div>
-              <div className="space-y-2">
-                <Label>Mobile Number</Label>
+                <FieldError
+                  errors={[
+                    form.formState.errors.emergency
+                      ?.primaryPhone as unknown as { message?: string },
+                  ]}
+                />
+              </Field>
+              <Field>
+                <FieldLabel>Mobile Number</FieldLabel>
                 <Input {...form.register("emergency.mobilePhone")} />
-              </div>
-              <div className="space-y-2">
-                <Label>Work Phone Number</Label>
+                <FieldError
+                  errors={[
+                    form.formState.errors.emergency?.mobilePhone as unknown as {
+                      message?: string;
+                    },
+                  ]}
+                />
+              </Field>
+              <Field>
+                <FieldLabel>Work Phone Number</FieldLabel>
                 <Input {...form.register("emergency.workPhone")} />
-              </div>
-              <div className="space-y-2">
-                <Label>Email</Label>
+                <FieldError
+                  errors={[
+                    form.formState.errors.emergency?.workPhone as unknown as {
+                      message?: string;
+                    },
+                  ]}
+                />
+              </Field>
+              <Field>
+                <FieldLabel>Email</FieldLabel>
                 <Input type="email" {...form.register("emergency.email")} />
-              </div>
+                <FieldError
+                  errors={[
+                    form.formState.errors.emergency?.email as unknown as {
+                      message?: string;
+                    },
+                  ]}
+                />
+              </Field>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label>Address Line 1</Label>
+              <Field>
+                <FieldLabel>Address Line 1</FieldLabel>
                 <Input {...form.register("emergency.address1")} />
-              </div>
-              <div className="space-y-2">
-                <Label>Address Line 2</Label>
+                <FieldError
+                  errors={[
+                    form.formState.errors.emergency?.address1 as unknown as {
+                      message?: string;
+                    },
+                  ]}
+                />
+              </Field>
+              <Field>
+                <FieldLabel>Address Line 2</FieldLabel>
                 <Input {...form.register("emergency.address2")} />
-              </div>
+                <FieldError
+                  errors={[
+                    form.formState.errors.emergency?.address2 as unknown as {
+                      message?: string;
+                    },
+                  ]}
+                />
+              </Field>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="space-y-2">
-                <Label>City</Label>
+              <Field>
+                <FieldLabel>City</FieldLabel>
                 <Input {...form.register("emergency.city")} />
-              </div>
-              <div className="space-y-2">
-                <Label>State</Label>
+                <FieldError
+                  errors={[
+                    form.formState.errors.emergency?.city as unknown as {
+                      message?: string;
+                    },
+                  ]}
+                />
+              </Field>
+              <Field>
+                <FieldLabel>State</FieldLabel>
                 <Input {...form.register("emergency.state")} />
-              </div>
-              <div className="space-y-2">
-                <Label>Zip</Label>
+                <FieldError
+                  errors={[
+                    form.formState.errors.emergency?.state as unknown as {
+                      message?: string;
+                    },
+                  ]}
+                />
+              </Field>
+              <Field>
+                <FieldLabel>Zip</FieldLabel>
                 <Input {...form.register("emergency.zip")} />
-              </div>
+                <FieldError
+                  errors={[
+                    form.formState.errors.emergency?.zip as unknown as {
+                      message?: string;
+                    },
+                  ]}
+                />
+              </Field>
             </div>
           </CardContent>
         </Card>
@@ -323,8 +467,8 @@ export default function MedicalIntakePage() {
           <CardContent>
             <div className="space-y-6">
               {/* dynamic fields */}
-              <div>
-                <Label>List Your Past Medical History</Label>
+              <Field>
+                <FieldLabel>List Your Past Medical History</FieldLabel>
                 <div className="flex gap-2 mt-1">
                   <Input
                     value={newMedicalHistory}
@@ -332,6 +476,7 @@ export default function MedicalIntakePage() {
                     className="flex-1"
                   />
                   <Button
+                    type="button"
                     size="sm"
                     onClick={() => {
                       addToArray("medicalHistory", newMedicalHistory);
@@ -346,10 +491,10 @@ export default function MedicalIntakePage() {
                     <div key={i}>{item}</div>
                   ))}
                 </div>
-              </div>
+              </Field>
 
-              <div>
-                <Label>Current Medications</Label>
+              <Field>
+                <FieldLabel>Current Medications</FieldLabel>
                 <div className="flex gap-2 mt-1">
                   <Input
                     value={newMed}
@@ -357,6 +502,7 @@ export default function MedicalIntakePage() {
                     className="flex-1"
                   />
                   <Button
+                    type="button"
                     size="sm"
                     onClick={() => {
                       addToArray("currentMedications", newMed);
@@ -373,10 +519,10 @@ export default function MedicalIntakePage() {
                     ),
                   )}
                 </div>
-              </div>
+              </Field>
 
-              <div>
-                <Label>Medications Allergy</Label>
+              <Field>
+                <FieldLabel>Medications Allergy</FieldLabel>
                 <div className="flex gap-2 mt-1">
                   <Input
                     value={newAllergy}
@@ -384,6 +530,7 @@ export default function MedicalIntakePage() {
                     className="flex-1"
                   />
                   <Button
+                    type="button"
                     size="sm"
                     onClick={() => {
                       addToArray("medicationAllergies", newAllergy);
@@ -400,10 +547,10 @@ export default function MedicalIntakePage() {
                     ),
                   )}
                 </div>
-              </div>
+              </Field>
 
-              <div>
-                <Label>Your Preferred Pharmacies</Label>
+              <Field>
+                <FieldLabel>Your Preferred Pharmacies</FieldLabel>
                 <div className="flex gap-2 mt-1">
                   <Input
                     value={newPharmacy}
@@ -411,6 +558,7 @@ export default function MedicalIntakePage() {
                     className="flex-1"
                   />
                   <Button
+                    type="button"
                     size="sm"
                     onClick={() => {
                       addToArray("preferredPharmacies", newPharmacy);
@@ -427,22 +575,27 @@ export default function MedicalIntakePage() {
                     ),
                   )}
                 </div>
-              </div>
+              </Field>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label>Pharmacy Name</Label>
+                <Field>
+                  <FieldLabel>Pharmacy Name</FieldLabel>
                   <Input {...form.register("pharmacyName")} />
-                </div>
-                <div className="space-y-2">
-                  <Label>Pharmacy Address</Label>
+                  <FieldError errors={[form.formState.errors.pharmacyName]} />
+                </Field>
+                <Field>
+                  <FieldLabel>Pharmacy Address</FieldLabel>
                   <Input {...form.register("pharmacyAddress")} />
-                </div>
-              </div>
+                  <FieldError
+                    errors={[form.formState.errors.pharmacyAddress]}
+                  />
+                </Field>
 
-              <div className="space-y-2">
-                <Label>How Did You Hear About Us?</Label>
-                <Input {...form.register("heardFrom")} />
+                <Field>
+                  <FieldLabel>How Did You Hear About Us?</FieldLabel>
+                  <Input {...form.register("heardFrom")} />
+                  <FieldError errors={[form.formState.errors.heardFrom]} />
+                </Field>
               </div>
             </div>
           </CardContent>
@@ -480,31 +633,48 @@ export default function MedicalIntakePage() {
                 <tbody>
                   {PHQ_QUESTIONS.map((q, index) => {
                     const key = `phq.${index + 1}` as const;
+                    const phqError = (
+                      form.formState.errors.phq as
+                        | Record<string, { message?: string } | undefined>
+                        | undefined
+                    )?.[String(index + 1)];
                     return (
-                      <tr
-                        key={index}
-                        className="border-t border-slate-200 py-2"
-                      >
-                        <td className="p-2 py-3 text-sm" colSpan={3}>
-                          {index + 1}. {q}
-                        </td>
-                        {[0, 1, 2, 3].map((val) => (
-                          <td key={val} className="p-2 py-3 text-center">
-                            <Controller
-                              control={form.control}
-                              name={key}
-                              render={({ field }) => (
-                                <input
-                                  type="radio"
-                                  value={val}
-                                  checked={Number(field.value) === val}
-                                  onChange={() => field.onChange(val)}
-                                />
-                              )}
-                            />
+                      <Fragment key={index}>
+                        <tr className="border-t border-slate-200 py-2">
+                          <td className="p-2 py-3 text-sm" colSpan={3}>
+                            {index + 1}. {q}
                           </td>
-                        ))}
-                      </tr>
+                          {[0, 1, 2, 3].map((val) => (
+                            <td key={val} className="p-2 py-3 text-center">
+                              <Controller
+                                control={form.control}
+                                name={key}
+                                render={({ field }) => (
+                                  <input
+                                    type="radio"
+                                    value={val}
+                                    checked={Number(field.value) === val}
+                                    onChange={() => field.onChange(val)}
+                                  />
+                                )}
+                              />
+                            </td>
+                          ))}
+                        </tr>
+                        {phqError?.message && (
+                          <tr
+                            className="border-t border-slate-100"
+                            key={`err-${index}`}
+                          >
+                            <td
+                              className="px-2 pb-2 text-destructive text-xs"
+                              colSpan={7}
+                            >
+                              Question {index + 1}: {phqError.message}
+                            </td>
+                          </tr>
+                        )}
+                      </Fragment>
                     );
                   })}
                 </tbody>
