@@ -113,13 +113,13 @@ export function Header() {
                 })}
               </nav>
               <div className="mt-6 flex flex-col gap-2">
-                <Link href="/dashboard" onClick={() => setMobileOpen(false)}>
+                <Link href="/signin" onClick={() => setMobileOpen(false)}>
                   <Button className="w-full bg-accent text-primary">
                     <Image src={userIcon} alt="User Icon" className="size-4" />
                     Sign In
                   </Button>
                 </Link>
-                <Link href="/" onClick={() => setMobileOpen(false)}>
+                <Link href="/onboarding" onClick={() => setMobileOpen(false)}>
                   <Button className="w-full bg-gradient-primary">
                     Get Started
                   </Button>
@@ -175,7 +175,7 @@ export function Header() {
         </nav>
 
         <div className="ml-auto hidden md:flex items-center gap-2">
-          <Link href="/dashboard">
+          <Link href="/signin">
             <Button className="bg-accent ">
               <Image src={userIcon} alt="User Icon" className="size-4" />
 
@@ -183,7 +183,7 @@ export function Header() {
             </Button>
           </Link>
 
-          <Link href="/">
+          <Link href="/onboarding">
             <Button className="bg-gradient-primary">
               Get Started
               <ArrowRight />
