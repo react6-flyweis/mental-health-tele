@@ -20,9 +20,7 @@ import { Input } from "@/components/ui/input";
 
 const patientRegisterSchema = z
   .object({
-    firstName: z.string().min(1, "First name is required"),
-    lastName: z.string().min(1, "Last name is required"),
-    email: z.string().email("Please enter a valid email address"),
+    username: z.string().min(1, "Username is required"),
     password: z
       .string()
       .min(8, "Password must be at least 8 characters")
@@ -53,9 +51,7 @@ export default function PatientRegisterCard() {
   const form = useForm<PatientRegisterFormValues>({
     resolver: zodResolver(patientRegisterSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
+      username: "",
       password: "",
       confirmPassword: "",
       acceptTerms: false,
@@ -79,7 +75,7 @@ export default function PatientRegisterCard() {
         Back to login
       </button>
 
-      <div className="bg-white rounded-[16px] p-6 shadow-[0px_3.9px_5.86px_-3.9px_#0000001A,0px_9.76px_14.64px_-2.93px_#0000001A]">
+      <div className="bg-white rounded-2xl p-6 shadow-[0px_3.9px_5.86px_-3.9px_#0000001A,0px_9.76px_14.64px_-2.93px_#0000001A]">
         <h2 className="text-[30px] font-bold text-center text-[#1E2939] mb-2">
           Create Patient Account
         </h2>
@@ -90,46 +86,17 @@ export default function PatientRegisterCard() {
 
         <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-5">
           <FieldGroup className="gap-4">
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              <Field>
-                <FieldLabel htmlFor="firstName" className="w-auto border-0 p-0">
-                  First Name
-                </FieldLabel>
-                <Input
-                  id="firstName"
-                  placeholder="John"
-                  className="h-12 rounded-[14px]"
-                  {...form.register("firstName")}
-                />
-                <FieldError errors={[form.formState.errors.firstName]} />
-              </Field>
-
-              <Field>
-                <FieldLabel htmlFor="lastName" className="w-auto border-0 p-0">
-                  Last Name
-                </FieldLabel>
-                <Input
-                  id="lastName"
-                  placeholder="Doe"
-                  className="h-12 rounded-[14px]"
-                  {...form.register("lastName")}
-                />
-                <FieldError errors={[form.formState.errors.lastName]} />
-              </Field>
-            </div>
-
             <Field>
-              <FieldLabel htmlFor="email" className="w-auto border-0 p-0">
-                Email Address
+              <FieldLabel htmlFor="username" className="w-auto border-0 p-0">
+                Username
               </FieldLabel>
               <Input
-                id="email"
-                type="email"
-                placeholder="you@example.com"
+                id="username"
+                placeholder="johndoe"
                 className="h-12 rounded-[14px]"
-                {...form.register("email")}
+                {...form.register("username")}
               />
-              <FieldError errors={[form.formState.errors.email]} />
+              <FieldError errors={[form.formState.errors.username]} />
             </Field>
 
             <Field>
