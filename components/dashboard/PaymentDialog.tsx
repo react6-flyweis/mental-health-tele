@@ -154,7 +154,7 @@ export default function PaymentDialog({
         <div className="flex justify-end mt-2">
           <SuccessDialog>
             <Button size="lg" className="bg-gradient-dash">
-              Pay Now <ArrowRight className="ml-2 h-5 w-5" />
+              Submit <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </SuccessDialog>
         </div>

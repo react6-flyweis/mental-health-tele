@@ -195,7 +195,7 @@ export default function AppointmentPaymentPage() {
                 className="bg-gradient-dash"
                 onClick={() => router.push("/appointment/payment/confirmation")}
               >
-                Pay Now <ArrowRight className="ml-2 h-5 w-5" />
+                Submit <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
           </form>

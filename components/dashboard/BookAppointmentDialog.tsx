@@ -131,7 +131,7 @@ export default function BookAppointmentDialog({
             {step === 5 ? (
               <PaymentDialog>
                 <Button size="lg" className="flex-1 bg-gradient-dash">
-                  Pay Now
+                  confirm
                 </Button>
               </PaymentDialog>
             ) : (

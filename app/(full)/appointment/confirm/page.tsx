@@ -110,7 +110,7 @@ export default function ConfirmAppointmentPage() {
             className="h-12 w-44 bg-gradient-primary text-white hover:opacity-95 ml-auto"
             onClick={() => router.push("/appointment/payment")}
           >
-            Pay Now
+            Confirm
           </Button>
         </div>
       </CardContent>
