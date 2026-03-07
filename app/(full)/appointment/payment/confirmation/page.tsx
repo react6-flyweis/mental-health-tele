@@ -64,7 +64,7 @@ export default function PaymentConfirmationPage() {
           </p>
           <Button
             size="lg"
-            className="bg-gradient-dash"
+            className="bg-gradient-primary"
             onClick={() => router.push("/appointment/medical-intake")}
           >
             Complete Your Medical Intake Form

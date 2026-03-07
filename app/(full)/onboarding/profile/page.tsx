@@ -251,7 +251,7 @@ export default function PatientProfilePage() {
 
             <Button
               type="submit"
-              className={`w-full mt-2 h-12 bg-gradient-to-r from-[#2F6F6A] to-[#39B09B] text-white hover:opacity-95`}
+              className="w-full mt-2 h-12 bg-gradient-primary"
               size="lg"
               disabled={!isFormValid}
             >

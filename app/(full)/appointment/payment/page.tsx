@@ -192,7 +192,7 @@ export default function AppointmentPaymentPage() {
             <div className="flex justify-end mt-2">
               <Button
                 size="lg"
-                className="bg-gradient-dash"
+                className="bg-gradient-primary"
                 onClick={() => router.push("/appointment/payment/confirmation")}
               >
                 Submit <ArrowRight className="ml-2 h-5 w-5" />
