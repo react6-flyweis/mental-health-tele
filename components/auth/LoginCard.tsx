@@ -1,19 +1,28 @@
 import { useState } from "react";
 import { Eye, EyeOff, ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type Props = {
   role: "Patient" | "Provider";
   onSubmitPath?: string;
+  signUpPath?: string | null;
 };
 
 export default function LoginCard({
   role,
   onSubmitPath = "/dashboard",
+  signUpPath,
 }: Props) {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [remember, setRemember] = useState(false);
+  const resolvedSignUpPath =
+    signUpPath !== undefined
+      ? signUpPath
+      : role === "Patient"
+        ? "/patient-register"
+        : null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -89,12 +98,17 @@ export default function LoginCard({
           </button>
         </form>
 
-        <p className="text-center mt-8 text-[#4A5565] text-sm">
-          Don't have an account?{" "}
-          <span className="text-[#219580] cursor-pointer font-medium">
-            Sign up
-          </span>
-        </p>
+        {resolvedSignUpPath ? (
+          <p className="text-center mt-8 text-[#4A5565] text-sm">
+            Don&apos;t have an account?{" "}
+            <Link
+              href={resolvedSignUpPath}
+              className="text-[#219580] cursor-pointer font-medium"
+            >
+              Sign up
+            </Link>
+          </p>
+        ) : null}
       </div>
 
       <p className="text-center mt-4 text-sm text-[#6A7282]">

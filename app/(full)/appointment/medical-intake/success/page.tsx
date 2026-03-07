@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Image from "next/image";
 
 import checkCircleImg from "@/assets/check-circle.png";
+import Link from "next/link";
 
 export default function MedicalIntakeSuccessPage() {
   const router = useRouter();
@@ -32,14 +33,15 @@ export default function MedicalIntakeSuccessPage() {
         <p className="max-w-xs mx-auto text-slate-600">
           We Have Sent You An Invoice Through Mail And SMS
         </p>
-        <Button
-          size="lg"
-          className="bg-gradient-dash mt-4 flex items-center justify-center w-full"
-          onClick={() => router.push("/dashboard")}
-        >
-          Login To Your Profile
-          <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
+        <Link href="/patient-register">
+          <Button
+            size="lg"
+            className="bg-gradient-dash mt-4 flex items-center justify-center w-full"
+          >
+            Login To Your Profile
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+        </Link>
       </CardContent>
     </Card>
   );
