@@ -13,7 +13,8 @@ export default function Footer() {
               <Image
                 src={logo}
                 alt="Mental Health Tele logo"
-                className="h-10 w-auto filter brightness-0 invert"
+                className="h-10 w-auto"
+                style={{ filter: "brightness(0) invert(1)" }}
               />
             </div>
 

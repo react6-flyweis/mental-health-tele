@@ -77,7 +77,7 @@ export default function StateSelectionStep({
       </h1>
 
       <Select value={selectedState} onValueChange={onSelectState}>
-        <SelectTrigger className="w-full h-12">
+        <SelectTrigger className="w-full h-12!">
           <SelectValue placeholder="Choose your state" />
         </SelectTrigger>
         <SelectContent>
