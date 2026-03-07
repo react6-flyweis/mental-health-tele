@@ -8,6 +8,7 @@ import { SectionHeader } from "./ui/section-header";
 import stepImg1 from "@/assets/landing/getting-started-1.png";
 import stepImg2 from "@/assets/landing/getting-started-2.png";
 import stepImg3 from "@/assets/landing/getting-started-3.png";
+import Link from "next/link";
 
 export default function GettingStartedSection() {
   const steps = [
@@ -71,10 +72,12 @@ export default function GettingStartedSection() {
           </div>
 
           <div className="mt-8 flex flex-col items-center">
-            <Button size="lg" className="bg-gradient-primary">
-              <span>Schedule Your Appointment</span>
-              <ChevronRight />
-            </Button>
+            <Link href="/onboarding">
+              <Button size="lg" className="bg-gradient-primary">
+                <span>Schedule Your Appointment</span>
+                <ChevronRight />
+              </Button>
+            </Link>
           </div>
         </div>
       </Container>

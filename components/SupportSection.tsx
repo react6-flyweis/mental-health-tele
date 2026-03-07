@@ -8,6 +8,7 @@ import targetIcon from "@/assets/icons/target.svg";
 import badgeIcon from "@/assets/icons/badge.svg";
 import speakerIcon from "@/assets/icons/speaker.svg";
 import { Container } from "./ui/container";
+import Link from "next/link";
 
 export default function SupportSection() {
   const features = [
@@ -137,9 +138,11 @@ export default function SupportSection() {
               </div>
 
               <div className="mt-6 border-t pt-4">
-                <Button size={"lg"} className="bg-gradient-primary">
-                  Book Your Session <ChevronRight />
-                </Button>
+                <Link href="/onboarding">
+                  <Button size={"lg"} className="bg-gradient-primary">
+                    Book Your Session <ChevronRight />
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

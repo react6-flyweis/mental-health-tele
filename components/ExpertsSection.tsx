@@ -16,6 +16,7 @@ import { SectionHeader } from "./ui/section-header";
 import expert1Img from "@/assets/landing/expert-1.png";
 import expert2Img from "@/assets/landing/expert-2.png";
 import expert3Img from "@/assets/landing/expert-3.png";
+import Link from "next/link";
 
 const features = [
   {
@@ -90,13 +91,15 @@ export default function ExpertsSection() {
               </ul>
 
               <div className="mt-6">
-                <Button
-                  size={"lg"}
-                  className="bg-gradient-primary w-full md:w-auto inline-flex items-center gap-2 rounded-lg"
-                >
-                  <span>Explore Our Care Team</span>
-                  <ChevronRight className="w-4 h-4" />
-                </Button>
+                <Link href="/onboarding">
+                  <Button
+                    size={"lg"}
+                    className="bg-gradient-primary w-full md:w-auto inline-flex items-center gap-2 rounded-lg"
+                  >
+                    <span>Explore Our Care Team</span>
+                    <ChevronRight className="w-4 h-4" />
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
